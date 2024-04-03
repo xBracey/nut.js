@@ -7,8 +7,8 @@ import {
   WindowProviderInterface
 } from "@nut-tree/provider-interfaces";
 import { mockPartial } from "sneer";
-import { Region, RGBA, WindowElement, WindowElementDescription } from "@nut-tree/shared";
-import { pixelWithColor, windowElementDescribedBy } from "../index";
+import { Region, RGBA, WindowElement, WindowElementDescription, WindowElementQuery } from "@nut-tree/shared";
+import { pixelWithColor } from "../index";
 import { NoopLogProvider } from "./provider/log/noop-log-provider.class";
 
 jest.setTimeout(50000);
@@ -103,12 +103,20 @@ describe("Window class", () => {
       });
       const mockWindowHandle = 123;
       const description: WindowElementDescription = {
-        type: "test"
+        type: "test",
+        id: "foo"
+      };
+      const query: WindowElementQuery = {
+        id: "test",
+        type: "window-element",
+        by: {
+          description
+        }
       };
       const SUT = new Window(providerRegistryMock, mockWindowHandle);
 
       // WHEN
-      await SUT.find(windowElementDescribedBy(description));
+      await SUT.find(query);
 
       // THEN
       expect(elementInspectorMock).toHaveBeenCalledTimes(1);
@@ -131,12 +139,20 @@ describe("Window class", () => {
       });
       const mockWindowHandle = 123;
       const description: WindowElementDescription = {
-        type: "test"
+        type: "test",
+        id: "foo"
+      };
+      const query: WindowElementQuery = {
+        id: "test",
+        type: "window-element",
+        by: {
+          description
+        }
       };
       const SUT = new Window(providerRegistryMock, mockWindowHandle);
 
       // WHEN
-      await SUT.findAll(windowElementDescribedBy(description));
+      await SUT.findAll(query);
 
       // THEN
       expect(elementInspectorMock).toHaveBeenCalledTimes(1);
@@ -240,9 +256,16 @@ describe("Window class", () => {
         });
         const mockWindowHandle = 123;
         const description: WindowElementDescription = {
-          type: "test"
+          type: "test",
+          id: "foo"
         };
-        const query = windowElementDescribedBy(description);
+        const query: WindowElementQuery = {
+          id: "test",
+          type: "window-element",
+          by: {
+            description
+          }
+        };
         const SUT = new Window(providerRegistryMock, mockWindowHandle);
         SUT.on(query, hookMock);
         SUT.on(query, secondHookMock);
@@ -281,9 +304,16 @@ describe("Window class", () => {
         });
         const mockWindowHandle = 123;
         const description: WindowElementDescription = {
-          type: "test"
+          type: "test",
+          id: "foo"
         };
-        const query = windowElementDescribedBy(description);
+        const query: WindowElementQuery = {
+          id: "test",
+          type: "window-element",
+          by: {
+            description
+          }
+        };
         const SUT = new Window(providerRegistryMock, mockWindowHandle);
         SUT.on(query, hookMock);
         SUT.on(query, secondHookMock);
