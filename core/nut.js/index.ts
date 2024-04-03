@@ -12,8 +12,6 @@ import {
   ColorQuery,
   LineQuery,
   RGBA,
-  WindowElementDescription,
-  WindowElementQuery,
   WindowQuery,
   WordQuery
 } from "@nut-tree/shared";
@@ -99,16 +97,6 @@ const windowWithTitle = (title: string | RegExp): WindowQuery => {
   };
 };
 
-const windowElementDescribedBy = (description: WindowElementDescription): WindowElementQuery => {
-  return {
-    type: "window-element",
-    id: `window-element-described-by-${JSON.stringify(description)}`,
-    by: {
-      description
-    }
-  };
-};
-
 const pixelWithColor = (color: RGBA): ColorQuery => {
   return {
     type: "color",
@@ -140,6 +128,5 @@ export {
   singleWord,
   textLine,
   windowWithTitle,
-  windowElementDescribedBy,
   pixelWithColor
 };
