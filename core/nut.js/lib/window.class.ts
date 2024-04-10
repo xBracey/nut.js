@@ -86,6 +86,14 @@ export class Window implements WindowInterface {
     return this.providerRegistry.getWindow().focusWindow(this.windowHandle);
   }
 
+  async minimize() {
+    return this.providerRegistry.getWindow().minimizeWindow(this.windowHandle);
+  }
+
+  async restore() {
+    return this.providerRegistry.getWindow().restoreWindow(this.windowHandle);
+  }
+
   async getElements(maxElements?: number): Promise<WindowElement> {
     return this.providerRegistry.getWindowElementInspector().getElements(this.windowHandle, maxElements);
   }
