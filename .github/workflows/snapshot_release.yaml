@@ -40,7 +40,7 @@ jobs:
       - name: Compile
         run: pnpm run compile
       - name: Run tests
-        uses: GabrielBB/xvfb-action@v1
+        uses: coactions/setup-xvfb@v1
         with:
           run: pnpm run coverage
 

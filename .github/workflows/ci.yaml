@@ -35,7 +35,7 @@ jobs:
       - name: Clean coverage report
         run: pnpm run coverage:clean
       - name: Generate coverage report
-        uses: GabrielBB/xvfb-action@v1
+        uses: coactions/setup-xvfb@v1
         env:
           NODE_OPTIONS: "--max-old-space-size=8192"
         with:
@@ -74,7 +74,7 @@ jobs:
       - name: Compile
         run: pnpm run compile
       - name: Generate coverage report
-        uses: GabrielBB/xvfb-action@v1
+        uses: coactions/setup-xvfb@v1
         with:
           run: |
             pnpm run coverage
