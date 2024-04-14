@@ -21,6 +21,11 @@ Please visit
 for detailed documentation and tutorials
 </p>
 
+<p align="center">
+Most importantly,
+</p>
+<h1 align="center"><a href="https://nutjs.dev/blog/i-give-up">please read this</a></h1>
+
 <br/>
 
 # About
