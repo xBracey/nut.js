@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ## 4.2.0
 
-- Feature: Extend `Window` class with `minimize` and `restore` methods
+- Feature: Extend `Window` class with `minimize` and `restore` methods 
 
 ## 4.1.0
 
