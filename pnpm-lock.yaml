@@ -172,8 +172,8 @@ importers:
   providers/libnut:
     dependencies:
       macpad-libnut-darwin:
-        specifier: 3.0.0
-        version: 3.0.0
+        specifier: 3.0.1
+        version: 3.0.1
       macpad-nut-js:
         specifier: workspace:*
         version: link:../../core/nut.js
@@ -1828,8 +1828,8 @@ packages:
   lunr@2.3.9:
     resolution: {integrity: sha512-zTU3DaZaF3Rt9rhN3uBMGQD3dD2/vFQqnvZCDv4dl5iOzq2IZQqTxu90r4E5J+nP70J3ilqVCrbho2eWaeW8Ow==}
 
-  macpad-libnut-darwin@3.0.0:
-    resolution: {integrity: sha512-i+8veIjjzlk4WdDLuews79CvBakkEIwuXdnieoQgfG0JlfalzcI52t/3xwPM2Ez9O5ZWnPfMILjzv4k10eSPdQ==}
+  macpad-libnut-darwin@3.0.1:
+    resolution: {integrity: sha512-DamaPl0J8XqE9ow2Ex7ZUpqW33h7uNDOmcKnXmJDS39LtZKCz7DWS6yZUgWXTw2Rpvy7EAxL1WU3LHfuLkhHVQ==}
     engines: {node: '>=10.15.3'}
     cpu: [arm64]
     os: [darwin]
@@ -4796,7 +4796,7 @@ snapshots:
 
   lunr@2.3.9: {}
 
-  macpad-libnut-darwin@3.0.0:
+  macpad-libnut-darwin@3.0.1:
     dependencies:
       bindings: 1.5.0
     optionalDependencies:
