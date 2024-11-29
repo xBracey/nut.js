@@ -1,14 +1,17 @@
-import { FindInput, OptionalSearchParameters, Region } from "@nut-tree/shared";
+import {
+  FindInput,
+  OptionalSearchParameters,
+  Region,
+} from "@nut-tree-macpad/shared";
 import { ScreenClass } from "./screen.class";
 
 export class AssertClass {
-  constructor(private screen: ScreenClass) {
-  }
+  constructor(private screen: ScreenClass) {}
 
   public async isVisible(
     searchInput: FindInput | Promise<FindInput>,
     searchRegion?: Region | Promise<Region>,
-    confidence?: number
+    confidence?: number,
   ): Promise<void> {
     const needle = await searchInput;
     const identifier = needle.id;
@@ -16,12 +19,12 @@ export class AssertClass {
     try {
       await this.screen.find(needle, {
         searchRegion,
-        confidence
+        confidence,
       } as OptionalSearchParameters<never>);
     } catch (err) {
       if (searchRegion !== undefined) {
         throw new Error(
-          `Element '${identifier}' not found in region ${searchRegion.toString()}. Reason: ${err}`
+          `Element '${identifier}' not found in region ${searchRegion.toString()}. Reason: ${err}`,
         );
       } else {
         throw new Error(`Element '${identifier}' not found. Reason: ${err}`);
@@ -32,7 +35,7 @@ export class AssertClass {
   public async notVisible(
     searchInput: FindInput | Promise<FindInput>,
     searchRegion?: Region | Promise<Region>,
-    confidence?: number
+    confidence?: number,
   ) {
     const needle = await searchInput;
     const identifier = needle.id;
@@ -40,7 +43,7 @@ export class AssertClass {
     try {
       await this.screen.find(needle, {
         searchRegion,
-        confidence
+        confidence,
       } as OptionalSearchParameters<never>);
     } catch (err) {
       return;

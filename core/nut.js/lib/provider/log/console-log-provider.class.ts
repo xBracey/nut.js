@@ -1,4 +1,4 @@
-import { LogProviderInterface } from "@nut-tree/provider-interfaces";
+import { LogProviderInterface } from "@nut-tree-macpad/provider-interfaces";
 
 export enum ConsoleLogLevel {
   TRACE,
@@ -15,7 +15,7 @@ export interface ConsoleLogProviderConfig {
 
 const defaultConfig: ConsoleLogProviderConfig = {
   logLevel: ConsoleLogLevel.INFO,
-  withTimeStamp: true
+  withTimeStamp: true,
 };
 
 export class ConsoleLogProvider implements LogProviderInterface {

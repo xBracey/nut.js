@@ -1,5 +1,5 @@
 import { screen } from "../../../index";
-import { Point, RGBA } from "@nut-tree/shared";
+import { Point, RGBA } from "@nut-tree-macpad/shared";
 import { mockPartial } from "sneer";
 import { toHaveColor } from "./toHaveColor.function";
 
@@ -40,7 +40,7 @@ describe(".toHaveColor", () => {
       return new RGBA(0, 0, 0, 0);
     });
     expect.extend({
-      toHaveColor
+      toHaveColor,
     });
 
     // WHEN
@@ -55,7 +55,7 @@ describe(".toHaveColor", () => {
       return new RGBA(255, 0, 5, 0);
     });
     expect.extend({
-      toHaveColor
+      toHaveColor,
     });
 
     // WHEN

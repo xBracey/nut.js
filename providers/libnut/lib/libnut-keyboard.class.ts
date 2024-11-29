@@ -1,6 +1,6 @@
 import { libnut } from "../import_libnut";
-import { Key } from "@nut-tree/shared";
-import { KeyboardProviderInterface } from "@nut-tree/provider-interfaces";
+import { Key } from "@nut-tree-macpad/shared";
+import { KeyboardProviderInterface } from "@nut-tree-macpad/provider-interfaces";
 
 export default class KeyboardAction implements KeyboardProviderInterface {
   public static KeyLookupMap = new Map<Key, string | null>([
@@ -147,7 +147,7 @@ export default class KeyboardAction implements KeyboardProviderInterface {
     [Key.AudioRewind, "audio_rewind"],
     [Key.AudioForward, "audio_forward"],
     [Key.AudioRepeat, "audio_repeat"],
-    [Key.AudioRandom, "audio_random"]
+    [Key.AudioRandom, "audio_random"],
   ]);
 
   public static keyLookup(key: Key): any {
@@ -179,8 +179,7 @@ export default class KeyboardAction implements KeyboardProviderInterface {
     });
   }
 
-  constructor() {
-  }
+  constructor() {}
 
   public type(input: string): Promise<void> {
     return new Promise<void>((resolve, reject) => {
@@ -238,5 +237,16 @@ export default class KeyboardAction implements KeyboardProviderInterface {
 
   public setKeyboardDelay(delay: number): void {
     libnut.setKeyboardDelay(delay);
+  }
+
+  public moveSpace(isLeft: boolean): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      try {
+        libnut.moveSpace(isLeft);
+        resolve();
+      } catch (e) {
+        reject(e);
+      }
+    });
   }
 }

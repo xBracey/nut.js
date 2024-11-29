@@ -1,5 +1,5 @@
 import { MouseClass } from "../../mouse.class";
-import { Region } from "@nut-tree/shared";
+import { Region } from "@nut-tree-macpad/shared";
 
 export const toBeIn = async (received: MouseClass, region: Region) => {
   const currentPosition = await received.getPosition();
@@ -17,12 +17,12 @@ export const toBeIn = async (received: MouseClass, region: Region) => {
     return {
       message: () =>
         `Expected cursor to be outside of region ${region.toString()}`,
-      pass: true
+      pass: true,
     };
   }
   return {
     message: () =>
       `Cursor should be within region ${region.toString()} but is at ${currentPosition.toString()}`,
-    pass: false
+    pass: false,
   };
 };

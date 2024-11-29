@@ -1,6 +1,6 @@
-import { Key } from "@nut-tree/shared";
+import { Key } from "@nut-tree-macpad/shared";
 import { sleep } from "./sleep.function";
-import { ProviderRegistry } from "@nut-tree/provider-interfaces";
+import { ProviderRegistry } from "@nut-tree-macpad/provider-interfaces";
 
 type StringOrKey = string[] | Key[];
 
@@ -26,7 +26,7 @@ export class KeyboardClass {
    * Config object for {@link KeyboardClass} class
    */
   public config: KeyboardConfig = {
-    autoDelayMs: 300
+    autoDelayMs: 300,
   };
 
   /**
@@ -118,6 +118,20 @@ export class KeyboardClass {
       await this.providerRegistry.getKeyboard().releaseKey(...keys);
       const keyNames = keys.map((key) => Key[key]);
       this.providerRegistry.getLogProvider().info(`Released keys ${keyNames}`);
+      return this;
+    } catch (e) {
+      this.providerRegistry.getLogProvider().error(e as Error);
+      throw e;
+    }
+  }
+
+  public async moveSpace(isLeft: boolean): Promise<KeyboardClass> {
+    try {
+      await sleep(this.config.autoDelayMs);
+      await this.providerRegistry.getKeyboard().moveSpace(isLeft);
+      this.providerRegistry
+        .getLogProvider()
+        .info(`Moved space ${isLeft ? "left" : "right"}`);
       return this;
     } catch (e) {
       this.providerRegistry.getLogProvider().error(e as Error);

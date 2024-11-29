@@ -1,16 +1,16 @@
-import { isRegion, Point, Region } from "@nut-tree/shared";
+import { isRegion, Point, Region } from "@nut-tree-macpad/shared";
 
 /**
  * {@link centerOf} returns the center {@link Point} for a given {@link Region}
  * @param target {@link Region} to determine the center {@link Point} for
  */
 export const centerOf = async (
-  target: Region | Promise<Region>
+  target: Region | Promise<Region>,
 ): Promise<Point> => {
   const targetRegion = await target;
   if (!isRegion(targetRegion)) {
     throw Error(
-      `centerOf requires a Region, but received ${JSON.stringify(targetRegion)}`
+      `centerOf requires a Region, but received ${JSON.stringify(targetRegion)}`,
     );
   }
   const x = Math.floor(targetRegion.left + targetRegion.width / 2);
@@ -24,14 +24,14 @@ export const centerOf = async (
  * @param target {@link Region} the random {@link Point} has to be within
  */
 export const randomPointIn = async (
-  target: Region | Promise<Region>
+  target: Region | Promise<Region>,
 ): Promise<Point> => {
   const targetRegion = await target;
   if (!isRegion(targetRegion)) {
     throw Error(
       `randomPointIn requires a Region, but received ${JSON.stringify(
-        targetRegion
-      )}`
+        targetRegion,
+      )}`,
     );
   }
   const x = Math.floor(targetRegion.left + Math.random() * targetRegion.width);

@@ -1,7 +1,10 @@
 import { ClipboardClass } from "./clipboard.class";
 import { mockPartial } from "sneer";
 import { NoopLogProvider } from "./provider/log/noop-log-provider.class";
-import { ClipboardProviderInterface, ProviderRegistry } from "@nut-tree/provider-interfaces";
+import {
+  ClipboardProviderInterface,
+  ProviderRegistry,
+} from "@nut-tree-macpad/provider-interfaces";
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -16,8 +19,8 @@ describe("Clipboard class", () => {
     const copyMock = jest.fn();
     providerRegistryMock.getClipboard = jest.fn(() =>
       mockPartial<ClipboardProviderInterface>({
-        copy: copyMock
-      })
+        copy: copyMock,
+      }),
     );
     providerRegistryMock.getLogProvider = () => new NoopLogProvider();
     const textToCopy = "bar";
@@ -36,8 +39,8 @@ describe("Clipboard class", () => {
     const pasteMock = jest.fn();
     providerRegistryMock.getClipboard = jest.fn(() =>
       mockPartial<ClipboardProviderInterface>({
-        paste: pasteMock
-      })
+        paste: pasteMock,
+      }),
     );
     providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 

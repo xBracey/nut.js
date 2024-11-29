@@ -10,8 +10,8 @@ import {
   Region,
   RGBA,
   TextQuery,
-  WindowQuery
-} from "@nut-tree/shared";
+  WindowQuery,
+} from "@nut-tree-macpad/shared";
 import { ScreenClass } from "./screen.class";
 import { mockPartial } from "sneer";
 import {
@@ -23,8 +23,8 @@ import {
   ProviderRegistry,
   ScreenProviderInterface,
   TextFinderInterface,
-  WindowFinderInterface
-} from "@nut-tree/provider-interfaces";
+  WindowFinderInterface,
+} from "@nut-tree-macpad/provider-interfaces";
 import { NoopLogProvider } from "./provider/log/noop-log-provider.class";
 
 const searchRegion = new Region(0, 0, 1000, 1000);
@@ -32,7 +32,7 @@ const loggingMock = mockPartial<LogProviderInterface>({
   debug: jest.fn(),
   info: jest.fn(),
   warn: jest.fn(),
-  error: jest.fn()
+  error: jest.fn(),
 });
 
 const providerRegistryMock = mockPartial<ProviderRegistry>({
@@ -50,8 +50,8 @@ const providerRegistryMock = mockPartial<ProviderRegistry>({
             3,
             "needle_image",
             4,
-            searchRegion.width * 4
-          )
+            searchRegion.width * 4,
+          ),
         );
       },
       screenSize(): Promise<Region> {
@@ -62,9 +62,9 @@ const providerRegistryMock = mockPartial<ProviderRegistry>({
       },
       screenHeight(): Promise<number> {
         return Promise.resolve(searchRegion.height);
-      }
+      },
     });
-  }
+  },
 });
 
 beforeEach(() => {
@@ -112,15 +112,15 @@ describe("Screen.", () => {
           3,
           "needle_image",
           4,
-          100 * 4
+          100 * 4,
         );
         const needlePromise = Promise.resolve(needle);
 
         const findMatchMock = jest.fn(() => Promise.resolve(matchResult));
         providerRegistryMock.getImageFinder = jest.fn(() =>
           mockPartial<ImageFinderInterface>({
-            findMatch: findMatchMock
-          })
+            findMatch: findMatchMock,
+          }),
         );
         providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -138,15 +138,15 @@ describe("Screen.", () => {
           id: "window-query",
           type: "window",
           by: {
-            title: "query"
-          }
+            title: "query",
+          },
         };
 
         const findMatchMock = jest.fn(() => Promise.resolve(1234));
         providerRegistryMock.getWindowFinder = jest.fn(() =>
           mockPartial<WindowFinderInterface>({
-            findMatch: findMatchMock
-          })
+            findMatch: findMatchMock,
+          }),
         );
         providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -167,15 +167,15 @@ describe("Screen.", () => {
           id: "color-query",
           type: "color",
           by: {
-            color: new RGBA(255, 0, 255, 1)
-          }
+            color: new RGBA(255, 0, 255, 1),
+          },
         };
 
         const findMatchMock = jest.fn(() => Promise.resolve(matchResult));
         providerRegistryMock.getColorFinder = jest.fn(() =>
           mockPartial<ColorFinderInterface>({
-            findMatch: findMatchMock
-          })
+            findMatch: findMatchMock,
+          }),
         );
         providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -191,16 +191,16 @@ describe("Screen.", () => {
           id: "dummy",
           type: "text",
           by: {
-            word: "dummy-query"
-          }
+            word: "dummy-query",
+          },
         },
         {
           id: "dummy",
           type: "text",
           by: {
-            line: "dummy-query"
-          }
-        }
+            line: "dummy-query",
+          },
+        },
       ])(
         "should choose the correct finder implementation for text queries",
         async (needle: TextQuery) => {
@@ -212,8 +212,8 @@ describe("Screen.", () => {
           const findMatchMock = jest.fn(() => Promise.resolve(matchResult));
           providerRegistryMock.getTextFinder = jest.fn(() =>
             mockPartial<TextFinderInterface>({
-              findMatch: findMatchMock
-            })
+              findMatch: findMatchMock,
+            }),
           );
           providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -222,7 +222,7 @@ describe("Screen.", () => {
 
           // THEN
           expect(findMatchMock).toHaveBeenCalledTimes(1);
-        }
+        },
       );
     });
 
@@ -235,7 +235,7 @@ describe("Screen.", () => {
 
       // THEN
       await expect(result).rejects.toThrowError(
-        /find requires an Image, a text query, a color query or a window query.*/
+        /find requires an Image, a text query, a color query or a window query.*/,
       );
     });
 
@@ -250,15 +250,15 @@ describe("Screen.", () => {
         3,
         "needle_image",
         4,
-        100 * 4
+        100 * 4,
       );
       const needlePromise = Promise.resolve(needle);
 
       const findMatchMock = jest.fn(() => Promise.resolve(matchResult));
       providerRegistryMock.getImageFinder = jest.fn(() =>
         mockPartial<ImageFinderInterface>({
-          findMatch: findMatchMock
-        })
+          findMatch: findMatchMock,
+        }),
       );
       providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -270,7 +270,7 @@ describe("Screen.", () => {
       const matchRequest = new MatchRequest(
         expect.any(Image),
         needle,
-        undefined
+        undefined,
       );
       expect(findMatchMock).toHaveBeenCalledWith(matchRequest);
     });
@@ -281,8 +281,8 @@ describe("Screen.", () => {
       const findMatchMock = jest.fn(() => Promise.resolve(matchResult));
       providerRegistryMock.getImageFinder = jest.fn(() =>
         mockPartial<ImageFinderInterface>({
-          findMatch: findMatchMock
-        })
+          findMatch: findMatchMock,
+        }),
       );
       providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -295,7 +295,7 @@ describe("Screen.", () => {
         3,
         "needle_image",
         4,
-        100 * 4
+        100 * 4,
       );
       SUT.on(needle, testCallback);
 
@@ -313,8 +313,8 @@ describe("Screen.", () => {
       const findMatchMock = jest.fn(() => Promise.resolve(matchResult));
       providerRegistryMock.getImageFinder = jest.fn(() =>
         mockPartial<ImageFinderInterface>({
-          findMatch: findMatchMock
-        })
+          findMatch: findMatchMock,
+        }),
       );
       providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -328,7 +328,7 @@ describe("Screen.", () => {
         3,
         "needle_image",
         4,
-        100 * 4
+        100 * 4,
       );
       SUT.on(needle, testCallback);
       SUT.on(needle, secondCallback);
@@ -351,8 +351,8 @@ describe("Screen.", () => {
       const findMatchMock = jest.fn(() => Promise.reject(expectedReason));
       providerRegistryMock.getImageFinder = jest.fn(() =>
         mockPartial<ImageFinderInterface>({
-          findMatch: findMatchMock
-        })
+          findMatch: findMatchMock,
+        }),
       );
       providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -365,7 +365,7 @@ describe("Screen.", () => {
 
       // THEN
       await expect(resultRegion).rejects.toThrowError(
-        `Searching for ${id} failed. Reason: '${expectedReason}'`
+        `Searching for ${id} failed. Reason: '${expectedReason}'`,
       );
     });
 
@@ -375,8 +375,8 @@ describe("Screen.", () => {
       const findMatchMock = jest.fn(() => Promise.reject(rejectionReason));
       providerRegistryMock.getImageFinder = jest.fn(() =>
         mockPartial<ImageFinderInterface>({
-          findMatch: findMatchMock
-        })
+          findMatch: findMatchMock,
+        }),
       );
       providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -389,7 +389,7 @@ describe("Screen.", () => {
 
       // THEN
       await expect(resultRegion).rejects.toThrowError(
-        `Searching for ${id} failed. Reason: '${rejectionReason}'`
+        `Searching for ${id} failed. Reason: '${rejectionReason}'`,
       );
     });
 
@@ -401,8 +401,8 @@ describe("Screen.", () => {
       const findMatchMock = jest.fn(() => Promise.resolve(matchResult));
       providerRegistryMock.getImageFinder = jest.fn(() =>
         mockPartial<ImageFinderInterface>({
-          findMatch: findMatchMock
-        })
+          findMatch: findMatchMock,
+        }),
       );
       providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -415,7 +415,7 @@ describe("Screen.", () => {
         3,
         "needle_image",
         4,
-        100 * 4
+        100 * 4,
       );
       const parameters = new OptionalSearchParameters(undefined, minMatch);
 
@@ -427,7 +427,7 @@ describe("Screen.", () => {
       const matchRequest = new MatchRequest(
         expect.any(Image),
         needle,
-        minMatch
+        minMatch,
       );
       expect(findMatchMock).toHaveBeenCalledWith(matchRequest);
     });
@@ -440,8 +440,8 @@ describe("Screen.", () => {
       const findMatchMock = jest.fn(() => Promise.resolve(matchResult));
       providerRegistryMock.getImageFinder = jest.fn(() =>
         mockPartial<ImageFinderInterface>({
-          findMatch: findMatchMock
-        })
+          findMatch: findMatchMock,
+        }),
       );
       providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -454,13 +454,13 @@ describe("Screen.", () => {
         3,
         "needle_image",
         4,
-        100 * 4
+        100 * 4,
       );
       const parameters = new OptionalSearchParameters(customSearchRegion);
       const expectedMatchRequest = new MatchRequest(
         expect.any(Image),
         needle,
-        undefined
+        undefined,
       );
 
       // WHEN
@@ -478,8 +478,8 @@ describe("Screen.", () => {
       const findMatchMock = jest.fn(() => Promise.resolve(matchResult));
       providerRegistryMock.getImageFinder = jest.fn(() =>
         mockPartial<ImageFinderInterface>({
-          findMatch: findMatchMock
-        })
+          findMatch: findMatchMock,
+        }),
       );
       providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -491,16 +491,16 @@ describe("Screen.", () => {
         3,
         "needle_image",
         4,
-        100 * 4
+        100 * 4,
       );
       const parameters = new OptionalSearchParameters(
         customSearchRegion,
-        minMatch
+        minMatch,
       );
       const expectedMatchRequest = new MatchRequest(
         expect.any(Image),
         needle,
-        minMatch
+        minMatch,
       );
 
       // WHEN
@@ -520,14 +520,14 @@ describe("Screen.", () => {
         limitedSearchRegion.left + resultRegion.left,
         limitedSearchRegion.top + resultRegion.top,
         resultRegion.width,
-        resultRegion.height
+        resultRegion.height,
       );
 
       const findMatchMock = jest.fn(() => Promise.resolve(matchResult));
       providerRegistryMock.getImageFinder = jest.fn(() =>
         mockPartial<ImageFinderInterface>({
-          findMatch: findMatchMock
-        })
+          findMatch: findMatchMock,
+        }),
       );
       providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -536,8 +536,8 @@ describe("Screen.", () => {
       const matchRegion = await SUT.find(
         new Image(100, 100, Buffer.from([]), 3, "needle_image", 4, 100 * 4),
         {
-          searchRegion: limitedSearchRegion
-        }
+          searchRegion: limitedSearchRegion,
+        },
       );
 
       // THEN
@@ -554,7 +554,7 @@ describe("Screen.", () => {
       ["with region bigger than screen on x axis", new Region(0, 0, 1100, 100)],
       [
         "with region bigger than screen on y axis",
-        new Region(0, 0, 1000, 1100)
+        new Region(0, 0, 1000, 1100),
       ],
       ["with region of 1 px width", new Region(0, 0, 1, 1100)],
       ["with region of 1 px height", new Region(0, 0, 100, 1)],
@@ -562,14 +562,14 @@ describe("Screen.", () => {
       ["with region leaving screen on y axis", new Region(0, 500, 100, 600)],
       [
         "with NaN x coordinate",
-        new Region("a" as unknown as number, 0, 100, 100)
+        new Region("a" as unknown as number, 0, 100, 100),
       ],
       [
         "with NaN y coordinate",
-        new Region(0, "a" as unknown as number, 100, 600)
+        new Region(0, "a" as unknown as number, 100, 600),
       ],
       ["with NaN on width", new Region(0, 0, "a" as unknown as number, 100)],
-      ["with NaN on height", new Region(0, 0, 100, "a" as unknown as number)]
+      ["with NaN on height", new Region(0, 0, 100, "a" as unknown as number)],
     ])("should reject search regions %s", async (_: string, region: Region) => {
       // GIVEN
       const id = "needle_image";
@@ -578,8 +578,8 @@ describe("Screen.", () => {
       const findMatchMock = jest.fn(() => Promise.resolve(matchResult));
       providerRegistryMock.getImageFinder = jest.fn(() =>
         mockPartial<ImageFinderInterface>({
-          findMatch: findMatchMock
-        })
+          findMatch: findMatchMock,
+        }),
       );
       providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -587,12 +587,12 @@ describe("Screen.", () => {
 
       // WHEN
       const findPromise = SUT.find(needle, {
-        searchRegion: region
+        searchRegion: region,
       });
 
       // THEN
       await expect(findPromise).rejects.toThrowError(
-        `Searching for ${id} failed. Reason:`
+        `Searching for ${id} failed. Reason:`,
       );
     });
   });
@@ -608,7 +608,7 @@ describe("Screen.", () => {
 
         // THEN
         await expect(result).rejects.toThrowError(
-          /findAll requires an Image, a text query, a color query or a window query.*/
+          /findAll requires an Image, a text query, a color query or a window query.*/,
         );
       });
 
@@ -624,15 +624,15 @@ describe("Screen.", () => {
           3,
           "needle_image",
           4,
-          100 * 4
+          100 * 4,
         );
         const needlePromise = Promise.resolve(needle);
 
         const findMatchMock = jest.fn(() => Promise.resolve([matchResult]));
         providerRegistryMock.getImageFinder = jest.fn(() =>
           mockPartial<ImageFinderInterface>({
-            findMatches: findMatchMock
-          })
+            findMatches: findMatchMock,
+          }),
         );
         providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -650,15 +650,15 @@ describe("Screen.", () => {
           id: "window-query",
           type: "window",
           by: {
-            title: "query"
-          }
+            title: "query",
+          },
         };
 
         const findMatchMock = jest.fn(() => Promise.resolve([1234]));
         providerRegistryMock.getWindowFinder = jest.fn(() =>
           mockPartial<WindowFinderInterface>({
-            findMatches: findMatchMock
-          })
+            findMatches: findMatchMock,
+          }),
         );
         providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -679,15 +679,15 @@ describe("Screen.", () => {
           id: "color-query",
           type: "color",
           by: {
-            color: new RGBA(255, 0, 255, 1)
-          }
+            color: new RGBA(255, 0, 255, 1),
+          },
         };
 
         const findMatchMock = jest.fn(() => Promise.resolve([matchResult]));
         providerRegistryMock.getColorFinder = jest.fn(() =>
           mockPartial<ColorFinderInterface>({
-            findMatches: findMatchMock
-          })
+            findMatches: findMatchMock,
+          }),
         );
         providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -703,16 +703,16 @@ describe("Screen.", () => {
           id: "dummy",
           type: "text",
           by: {
-            word: "dummy-query"
-          }
+            word: "dummy-query",
+          },
         },
         {
           id: "dummy",
           type: "text",
           by: {
-            line: "dummy-query"
-          }
-        }
+            line: "dummy-query",
+          },
+        },
       ])(
         "should choose the correct finder implementation for text queries",
         async (needle: TextQuery) => {
@@ -724,8 +724,8 @@ describe("Screen.", () => {
           const findMatchMock = jest.fn(() => Promise.resolve([matchResult]));
           providerRegistryMock.getTextFinder = jest.fn(() =>
             mockPartial<TextFinderInterface>({
-              findMatches: findMatchMock
-            })
+              findMatches: findMatchMock,
+            }),
           );
           providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -734,7 +734,7 @@ describe("Screen.", () => {
 
           // THEN
           expect(findMatchMock).toHaveBeenCalledTimes(1);
-        }
+        },
       );
     });
     it("should call registered hook before resolve", async () => {
@@ -744,8 +744,8 @@ describe("Screen.", () => {
       const findMatchesMock = jest.fn(() => Promise.resolve(matchResults));
       providerRegistryMock.getImageFinder = jest.fn(() =>
         mockPartial<ImageFinderInterface>({
-          findMatches: findMatchesMock
-        })
+          findMatches: findMatchesMock,
+        }),
       );
       providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -758,7 +758,7 @@ describe("Screen.", () => {
         3,
         "needle_image",
         4,
-        100 * 4
+        100 * 4,
       );
       SUT.on(needle, testCallback);
 
@@ -777,8 +777,8 @@ describe("Screen.", () => {
       const findMatchesMock = jest.fn(() => Promise.resolve(matchResults));
       providerRegistryMock.getImageFinder = jest.fn(() =>
         mockPartial<ImageFinderInterface>({
-          findMatches: findMatchesMock
-        })
+          findMatches: findMatchesMock,
+        }),
       );
       providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -792,7 +792,7 @@ describe("Screen.", () => {
         3,
         "needle_image",
         4,
-        100 * 4
+        100 * 4,
       );
       SUT.on(needle, testCallback);
       SUT.on(needle, secondCallback);
@@ -813,8 +813,8 @@ describe("Screen.", () => {
       const findMatchesMock = jest.fn(() => Promise.reject(rejectionReason));
       providerRegistryMock.getImageFinder = jest.fn(() =>
         mockPartial<ImageFinderInterface>({
-          findMatches: findMatchesMock
-        })
+          findMatches: findMatchesMock,
+        }),
       );
       providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -827,7 +827,7 @@ describe("Screen.", () => {
 
       // THEN
       await expect(resultRegion).rejects.toThrowError(
-        `Searching for ${id} failed. Reason: '${rejectionReason}'`
+        `Searching for ${id} failed. Reason: '${rejectionReason}'`,
       );
     });
 
@@ -839,8 +839,8 @@ describe("Screen.", () => {
       const findMatchesMock = jest.fn(() => Promise.resolve([matchResult]));
       providerRegistryMock.getImageFinder = jest.fn(() =>
         mockPartial<ImageFinderInterface>({
-          findMatches: findMatchesMock
-        })
+          findMatches: findMatchesMock,
+        }),
       );
       providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -853,7 +853,7 @@ describe("Screen.", () => {
         3,
         "needle_image",
         4,
-        100 * 4
+        100 * 4,
       );
       const parameters = new OptionalSearchParameters(undefined, minMatch);
 
@@ -865,7 +865,7 @@ describe("Screen.", () => {
       const matchRequest = new MatchRequest(
         expect.any(Image),
         needle,
-        minMatch
+        minMatch,
       );
       expect(findMatchesMock).toHaveBeenCalledWith(matchRequest);
     });
@@ -878,8 +878,8 @@ describe("Screen.", () => {
       const findMatchesMock = jest.fn(() => Promise.resolve([matchResult]));
       providerRegistryMock.getImageFinder = jest.fn(() =>
         mockPartial<ImageFinderInterface>({
-          findMatches: findMatchesMock
-        })
+          findMatches: findMatchesMock,
+        }),
       );
       providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -892,13 +892,13 @@ describe("Screen.", () => {
         3,
         "needle_image",
         4,
-        100 * 4
+        100 * 4,
       );
       const parameters = new OptionalSearchParameters(customSearchRegion);
       const expectedMatchRequest = new MatchRequest(
         expect.any(Image),
         needle,
-        undefined
+        undefined,
       );
 
       // WHEN
@@ -916,8 +916,8 @@ describe("Screen.", () => {
       const findMatchesMock = jest.fn(() => Promise.resolve([matchResult]));
       providerRegistryMock.getImageFinder = jest.fn(() =>
         mockPartial<ImageFinderInterface>({
-          findMatches: findMatchesMock
-        })
+          findMatches: findMatchesMock,
+        }),
       );
       providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -929,16 +929,16 @@ describe("Screen.", () => {
         3,
         "needle_image",
         4,
-        100 * 4
+        100 * 4,
       );
       const parameters = new OptionalSearchParameters(
         customSearchRegion,
-        minMatch
+        minMatch,
       );
       const expectedMatchRequest = new MatchRequest(
         expect.any(Image),
         needle,
-        minMatch
+        minMatch,
       );
 
       // WHEN
@@ -958,14 +958,14 @@ describe("Screen.", () => {
         limitedSearchRegion.left + resultRegion.left,
         limitedSearchRegion.top + resultRegion.top,
         resultRegion.width,
-        resultRegion.height
+        resultRegion.height,
       );
 
       const findMatchesMock = jest.fn(() => Promise.resolve([matchResult]));
       providerRegistryMock.getImageFinder = jest.fn(() =>
         mockPartial<ImageFinderInterface>({
-          findMatches: findMatchesMock
-        })
+          findMatches: findMatchesMock,
+        }),
       );
       providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -974,8 +974,8 @@ describe("Screen.", () => {
       const [matchRegion] = await SUT.findAll(
         new Image(100, 100, Buffer.from([]), 3, "needle_image", 4, 100 * 4),
         {
-          searchRegion: limitedSearchRegion
-        }
+          searchRegion: limitedSearchRegion,
+        },
       );
 
       // THEN
@@ -992,7 +992,7 @@ describe("Screen.", () => {
       ["with region bigger than screen on x axis", new Region(0, 0, 1100, 100)],
       [
         "with region bigger than screen on y axis",
-        new Region(0, 0, 1000, 1100)
+        new Region(0, 0, 1000, 1100),
       ],
       ["with region of 1 px width", new Region(0, 0, 1, 1100)],
       ["with region of 1 px height", new Region(0, 0, 100, 1)],
@@ -1000,14 +1000,14 @@ describe("Screen.", () => {
       ["with region leaving screen on y axis", new Region(0, 500, 100, 600)],
       [
         "with NaN x coordinate",
-        new Region("a" as unknown as number, 0, 100, 100)
+        new Region("a" as unknown as number, 0, 100, 100),
       ],
       [
         "with NaN y coordinate",
-        new Region(0, "a" as unknown as number, 100, 600)
+        new Region(0, "a" as unknown as number, 100, 600),
       ],
       ["with NaN on width", new Region(0, 0, "a" as unknown as number, 100)],
-      ["with NaN on height", new Region(0, 0, 100, "a" as unknown as number)]
+      ["with NaN on height", new Region(0, 0, 100, "a" as unknown as number)],
     ])("should reject search regions %s", async (_: string, region: Region) => {
       // GIVEN
       const id = "needle_image";
@@ -1016,8 +1016,8 @@ describe("Screen.", () => {
       const findMatchesMock = jest.fn(() => Promise.resolve([matchResult]));
       providerRegistryMock.getImageFinder = jest.fn(() =>
         mockPartial<ImageFinderInterface>({
-          findMatches: findMatchesMock
-        })
+          findMatches: findMatchesMock,
+        }),
       );
       providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -1025,12 +1025,12 @@ describe("Screen.", () => {
 
       // WHEN
       const findPromise = SUT.findAll(needle, {
-        searchRegion: region
+        searchRegion: region,
       });
 
       // THEN
       await expect(findPromise).rejects.toThrowError(
-        `Searching for ${id} failed. Reason:`
+        `Searching for ${id} failed. Reason:`,
       );
     });
   });
@@ -1041,8 +1041,8 @@ describe("Screen.", () => {
     const highlightMock = jest.fn((value: any) => Promise.resolve(value));
     providerRegistryMock.getScreen = jest.fn(() =>
       mockPartial<ScreenProviderInterface>({
-        highlightScreenRegion: highlightMock
-      })
+        highlightScreenRegion: highlightMock,
+      }),
     );
     providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -1058,13 +1058,13 @@ describe("Screen.", () => {
     // GIVEN
     const highlightRegion = new Region(10, 20, 30, 40);
     const highlightRegionPromise = new Promise<Region>((res) =>
-      res(highlightRegion)
+      res(highlightRegion),
     );
     const highlightMock = jest.fn((value: any) => Promise.resolve(value));
     providerRegistryMock.getScreen = jest.fn(() =>
       mockPartial<ScreenProviderInterface>({
-        highlightScreenRegion: highlightMock
-      })
+        highlightScreenRegion: highlightMock,
+      }),
     );
     providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -1087,19 +1087,19 @@ describe("Screen.", () => {
         4,
         "test",
         4,
-        100 * 4
+        100 * 4,
       );
       const grabScreenMock = jest.fn(() => Promise.resolve(screenshot));
       const saveImageMock = jest.fn();
       providerRegistryMock.getScreen = jest.fn(() =>
         mockPartial<ScreenProviderInterface>({
-          grabScreen: grabScreenMock
-        })
+          grabScreen: grabScreenMock,
+        }),
       );
       providerRegistryMock.getImageWriter = jest.fn(() =>
         mockPartial<ImageWriter>({
-          store: saveImageMock
-        })
+          store: saveImageMock,
+        }),
       );
       providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -1108,7 +1108,7 @@ describe("Screen.", () => {
       const expectedImagePath = join(cwd(), imageName);
       const expectedData: ImageWriterParameters = {
         image: screenshot,
-        path: expectedImagePath
+        path: expectedImagePath,
       };
 
       // WHEN
@@ -1126,8 +1126,8 @@ describe("Screen.", () => {
       const grabScreenMock = jest.fn(() => Promise.resolve(screenshot));
       providerRegistryMock.getScreen = jest.fn(() =>
         mockPartial<ScreenProviderInterface>({
-          grabScreen: grabScreenMock
-        })
+          grabScreen: grabScreenMock,
+        }),
       );
       providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -1139,7 +1139,7 @@ describe("Screen.", () => {
 
       // THEN
       expect(result).rejects.toThrowError(
-        /^capture requires an Image, but received/
+        /^capture requires an Image, but received/,
       );
     });
   });
@@ -1154,25 +1154,25 @@ describe("Screen.", () => {
         4,
         "test",
         4,
-        100 * 4
+        100 * 4,
       );
       const regionToCapture = mockPartial<Region>({
         top: 42,
         left: 9,
         height: 10,
-        width: 3.14159265359
+        width: 3.14159265359,
       });
       const grabScreenMock = jest.fn(() => Promise.resolve(screenshot));
       const saveImageMock = jest.fn();
       providerRegistryMock.getScreen = jest.fn(() =>
         mockPartial<ScreenProviderInterface>({
-          grabScreenRegion: grabScreenMock
-        })
+          grabScreenRegion: grabScreenMock,
+        }),
       );
       providerRegistryMock.getImageWriter = jest.fn(() =>
         mockPartial<ImageWriter>({
-          store: saveImageMock
-        })
+          store: saveImageMock,
+        }),
       );
       providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -1181,7 +1181,7 @@ describe("Screen.", () => {
       const expectedImagePath = join(cwd(), imageName);
       const expectedData: ImageWriterParameters = {
         image: screenshot,
-        path: expectedImagePath
+        path: expectedImagePath,
       };
 
       // WHEN
@@ -1200,13 +1200,13 @@ describe("Screen.", () => {
         top: 42,
         left: 9,
         height: 10,
-        width: 3.14159265359
+        width: 3.14159265359,
       });
       const grabScreenMock = jest.fn(() => Promise.resolve(screenshot));
       providerRegistryMock.getScreen = jest.fn(() =>
         mockPartial<ScreenProviderInterface>({
-          grabScreenRegion: grabScreenMock
-        })
+          grabScreenRegion: grabScreenMock,
+        }),
       );
       providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -1218,7 +1218,7 @@ describe("Screen.", () => {
 
       // THEN
       expect(result).rejects.toThrowError(
-        /^captureRegion requires an Image, but received/
+        /^captureRegion requires an Image, but received/,
       );
     });
   });

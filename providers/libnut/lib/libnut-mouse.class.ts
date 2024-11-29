@@ -1,6 +1,6 @@
 import { libnut } from "../import_libnut";
-import { Button, Point } from "@nut-tree/shared";
-import { MouseProviderInterface } from "@nut-tree/provider-interfaces";
+import { Button, Point } from "@nut-tree-macpad/shared";
+import { MouseProviderInterface } from "@nut-tree-macpad/provider-interfaces";
 
 export default class MouseAction implements MouseProviderInterface {
   public static buttonLookup(btn: Button): any {
@@ -11,12 +11,11 @@ export default class MouseAction implements MouseProviderInterface {
     [
       [Button.LEFT, "left"],
       [Button.MIDDLE, "middle"],
-      [Button.RIGHT, "right"]
+      [Button.RIGHT, "right"],
     ]
   );
 
-  constructor() {
-  }
+  constructor() {}
 
   public setMouseDelay(delay: number): void {
     libnut.setMouseDelay(delay);

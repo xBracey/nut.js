@@ -1,9 +1,15 @@
-import { ColorFinderInterface } from "@nut-tree/provider-interfaces";
-import { ColorQuery, imageToJimp, MatchRequest, MatchResult, Point } from "@nut-tree/shared";
+import { ColorFinderInterface } from "@nut-tree-macpad/provider-interfaces";
+import {
+  ColorQuery,
+  imageToJimp,
+  MatchRequest,
+  MatchResult,
+  Point,
+} from "@nut-tree-macpad/shared";
 
 export default class implements ColorFinderInterface {
   async findMatch<PROVIDER_DATA_TYPE>(
-    query: MatchRequest<ColorQuery, PROVIDER_DATA_TYPE>
+    query: MatchRequest<ColorQuery, PROVIDER_DATA_TYPE>,
   ): Promise<MatchResult<Point>> {
     const jimp = imageToJimp(query.haystack);
     let result: MatchResult<Point> | null = null;
@@ -12,7 +18,7 @@ export default class implements ColorFinderInterface {
       0,
       0,
       jimp.bitmap.width,
-      jimp.bitmap.height
+      jimp.bitmap.height,
     )) {
       if (
         jimp.bitmap.data[idx] === color.R &&
@@ -24,8 +30,8 @@ export default class implements ColorFinderInterface {
           1,
           new Point(
             x / query.haystack.pixelDensity.scaleX,
-            y / query.haystack.pixelDensity.scaleY
-          )
+            y / query.haystack.pixelDensity.scaleY,
+          ),
         );
         break;
       }
@@ -35,13 +41,13 @@ export default class implements ColorFinderInterface {
       return result;
     } else {
       throw new Error(
-        `No match for color RGBA(${color.R},${color.G},${color.B},${color.A}) found`
+        `No match for color RGBA(${color.R},${color.G},${color.B},${color.A}) found`,
       );
     }
   }
 
   async findMatches<PROVIDER_DATA_TYPE>(
-    query: MatchRequest<ColorQuery, PROVIDER_DATA_TYPE>
+    query: MatchRequest<ColorQuery, PROVIDER_DATA_TYPE>,
   ): Promise<MatchResult<Point>[]> {
     const jimp = imageToJimp(query.haystack);
     const results: MatchResult<Point>[] = [];
@@ -58,9 +64,9 @@ export default class implements ColorFinderInterface {
             1,
             new Point(
               x / query.haystack.pixelDensity.scaleX,
-              y / query.haystack.pixelDensity.scaleY
-            )
-          )
+              y / query.haystack.pixelDensity.scaleY,
+            ),
+          ),
         );
       }
     });

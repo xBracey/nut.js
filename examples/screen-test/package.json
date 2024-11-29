@@ -13,7 +13,9 @@
     "test": "jest --runInBand"
   },
   "dependencies": {
-    "@nut-tree/nut-js": "workspace:*",
-    "@nut-tree/nl-matcher": "2.2.0"
+    "@nut-tree-macpad/nut-js": "workspace:*"
+  },
+  "optionalDependencies": {
+    "@nut-tree-macpad/nl-matcher": "2.2.0"
   }
 }

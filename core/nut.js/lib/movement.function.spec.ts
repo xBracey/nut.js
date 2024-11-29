@@ -1,14 +1,17 @@
 import { createMovementApi } from "./movement.function";
 import { mockPartial } from "sneer";
-import { MouseProviderInterface, ProviderRegistry } from "@nut-tree/provider-interfaces";
-import { Point } from "@nut-tree/shared";
+import {
+  MouseProviderInterface,
+  ProviderRegistry,
+} from "@nut-tree-macpad/provider-interfaces";
+import { Point } from "@nut-tree-macpad/shared";
 
 beforeEach(() => {
   jest.clearAllMocks();
 });
 
 const lineHelperMock = {
-  straightLine: jest.fn()
+  straightLine: jest.fn(),
 };
 
 const currentPosition = new Point(500, 500);
@@ -16,9 +19,9 @@ const currentPosition = new Point(500, 500);
 const providerRegistryMock = mockPartial<ProviderRegistry>({
   getMouse(): MouseProviderInterface {
     return mockPartial<MouseProviderInterface>({
-      currentMousePosition: () => Promise.resolve(currentPosition)
+      currentMousePosition: () => Promise.resolve(currentPosition),
     });
-  }
+  },
 });
 
 describe("MovementApi", () => {
@@ -29,7 +32,7 @@ describe("MovementApi", () => {
       const step = 100;
       const targetPoint = new Point(
         currentPosition.x,
-        currentPosition.y + step
+        currentPosition.y + step,
       );
 
       // WHEN
@@ -39,7 +42,7 @@ describe("MovementApi", () => {
       expect(lineHelperMock.straightLine).toHaveBeenCalledTimes(1);
       expect(lineHelperMock.straightLine).toHaveBeenCalledWith(
         currentPosition,
-        targetPoint
+        targetPoint,
       );
     });
 
@@ -49,7 +52,7 @@ describe("MovementApi", () => {
       const step = 100;
       const targetPoint = new Point(
         currentPosition.x,
-        currentPosition.y - step
+        currentPosition.y - step,
       );
 
       // WHEN
@@ -59,7 +62,7 @@ describe("MovementApi", () => {
       expect(lineHelperMock.straightLine).toHaveBeenCalledTimes(1);
       expect(lineHelperMock.straightLine).toHaveBeenCalledWith(
         currentPosition,
-        targetPoint
+        targetPoint,
       );
     });
 
@@ -69,7 +72,7 @@ describe("MovementApi", () => {
       const step = 100;
       const targetPoint = new Point(
         currentPosition.x - step,
-        currentPosition.y
+        currentPosition.y,
       );
 
       // WHEN
@@ -79,7 +82,7 @@ describe("MovementApi", () => {
       expect(lineHelperMock.straightLine).toHaveBeenCalledTimes(1);
       expect(lineHelperMock.straightLine).toHaveBeenCalledWith(
         currentPosition,
-        targetPoint
+        targetPoint,
       );
     });
 
@@ -89,7 +92,7 @@ describe("MovementApi", () => {
       const step = 100;
       const targetPoint = new Point(
         currentPosition.x + step,
-        currentPosition.y
+        currentPosition.y,
       );
 
       // WHEN
@@ -99,7 +102,7 @@ describe("MovementApi", () => {
       expect(lineHelperMock.straightLine).toHaveBeenCalledTimes(1);
       expect(lineHelperMock.straightLine).toHaveBeenCalledWith(
         currentPosition,
-        targetPoint
+        targetPoint,
       );
     });
   });
@@ -122,7 +125,7 @@ describe("MovementApi", () => {
       const step = 100;
       const targetPoint = new Point(
         currentPosition.x,
-        currentPosition.y - step
+        currentPosition.y - step,
       );
 
       // WHEN
@@ -132,7 +135,7 @@ describe("MovementApi", () => {
       expect(lineHelperMock.straightLine).toHaveBeenCalledTimes(1);
       expect(lineHelperMock.straightLine).toHaveBeenCalledWith(
         currentPosition,
-        targetPoint
+        targetPoint,
       );
     });
   });

@@ -9,12 +9,19 @@ export interface Bitmap {
 
 export interface Screen {
   capture(x?: number, y?: number, width?: number, height?: number): Bitmap;
-  highlight(x: number, y: number, width: number, height: number, duration: number, opacity: number): void;
+  highlight(
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+    duration: number,
+    opacity: number
+  ): void;
 }
 
 export interface Point {
   x: number;
-  y: number
+  y: number;
 }
 
 export interface Size {
@@ -186,15 +193,15 @@ export enum Key {
   LightsMonDown = "lights_mon_down",
   LightsKbdToggle = "lights_kbd_toggle",
   LightsKbdUp = "lights_kbd_up",
-  LightsKbdDown = "lights_kbd_down"
+  LightsKbdDown = "lights_kbd_down",
 }
 
 export function setKeyboardDelay(ms: number): void;
 export function keyTap(key: string, modifier?: string | string[]): void;
 export function keyToggle(
-    key: string,
-    down: string,
-    modifier?: string | string[]
+  key: string,
+  down: string,
+  modifier?: string | string[]
 ): void;
 export function typeString(string: string): void;
 export function typeStringDelayed(string: string, cpm: number): void;
@@ -211,6 +218,7 @@ export function getWindows(): number[];
 export function getActiveWindow(): number;
 export function getWindowRect(handle: number): Rect;
 export function getWindowTitle(handle: number): string;
+export function moveSpace(isLeft: boolean): void;
 
 /**
  * Sets the focus to a specific window using its handle.
@@ -218,7 +226,7 @@ export function getWindowTitle(handle: number): string;
  * @param {number} handle - The handle ID of the window to be focused.
  * @returns {void}
  */
-export function focusWindow(handle: number): boolean
+export function focusWindow(handle: number): boolean;
 
 /**
  * Resizes a window by its handle to the given width and height.
@@ -228,7 +236,7 @@ export function focusWindow(handle: number): boolean
  * @param {Size} newSize - The new size of the window.
  * @returns {void}
  */
-export function resizeWindow(handle: number, newSize: Size): boolean
+export function resizeWindow(handle: number, newSize: Size): boolean;
 
 /**
  * Moves a window by its handle to the given x and y coordinates.
@@ -237,6 +245,6 @@ export function resizeWindow(handle: number, newSize: Size): boolean
  * @param {Point} newOrigin - The new size of the window.
  * @returns {void}
  */
-export function moveWindow(handle: number, newOrigin: Point): boolean
+export function moveWindow(handle: number, newOrigin: Point): boolean;
 
 export const screen: Screen;

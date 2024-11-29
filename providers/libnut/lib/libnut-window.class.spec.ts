@@ -1,6 +1,6 @@
 import { libnut } from "../import_libnut";
 import WindowAction from "./libnut-window.class";
-import { Region } from "@nut-tree/shared";
+import { Region } from "@nut-tree-macpad/shared";
 
 jest.mock("../import_libnut");
 
@@ -82,7 +82,7 @@ describe("libnut WindowAction", () => {
         x: 1,
         y: 2,
         width: 42,
-        height: 23
+        height: 23,
       };
       const windowRegion = new Region(
         windowRect.x,

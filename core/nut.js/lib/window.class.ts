@@ -10,9 +10,9 @@ import {
   WindowElementCallback,
   WindowElementQuery,
   WindowElementResultFindInput,
-  WindowInterface
-} from "@nut-tree/shared";
-import { ProviderRegistry } from "@nut-tree/provider-interfaces";
+  WindowInterface,
+} from "@nut-tree-macpad/shared";
+import { ProviderRegistry } from "@nut-tree-macpad/provider-interfaces";
 import { timeout } from "./util/timeout.function";
 
 export class Window implements WindowInterface {
@@ -20,12 +20,9 @@ export class Window implements WindowInterface {
 
   constructor(
     private providerRegistry: ProviderRegistry,
-    private windowHandle: number
+    private windowHandle: number,
   ) {
-    this.findHooks = new Map<
-      WindowElementQuery,
-      WindowElementCallback[]
-    >();
+    this.findHooks = new Map<WindowElementQuery, WindowElementCallback[]>();
   }
 
   get title(): Promise<string> {
@@ -41,8 +38,12 @@ export class Window implements WindowInterface {
   }
 
   async getRegion(): Promise<Region> {
-    const region = await this.providerRegistry.getWindow().getWindowRegion(this.windowHandle);
-    const mainWindowRegion = await this.providerRegistry.getScreen().screenSize();
+    const region = await this.providerRegistry
+      .getWindow()
+      .getWindowRegion(this.windowHandle);
+    const mainWindowRegion = await this.providerRegistry
+      .getScreen()
+      .screenSize();
     if (region.left < 0) {
       region.width = region.width + region.left;
       region.left = 0;
@@ -95,7 +96,9 @@ export class Window implements WindowInterface {
   }
 
   async getElements(maxElements?: number): Promise<WindowElement> {
-    return this.providerRegistry.getWindowElementInspector().getElements(this.windowHandle, maxElements);
+    return this.providerRegistry
+      .getWindowElementInspector()
+      .getElements(this.windowHandle, maxElements);
   }
 
   /**
@@ -103,14 +106,20 @@ export class Window implements WindowInterface {
    * @param searchInput A {@link WindowedFindInput} instance
    */
   public async find(
-    searchInput: WindowElementResultFindInput | Promise<WindowElementResultFindInput>
+    searchInput:
+      | WindowElementResultFindInput
+      | Promise<WindowElementResultFindInput>,
   ): Promise<WindowElement> {
     const needle = await searchInput;
-    this.providerRegistry.getLogProvider().info(`Searching for ${needle} in window ${this.windowHandle}`);
+    this.providerRegistry
+      .getLogProvider()
+      .info(`Searching for ${needle} in window ${this.windowHandle}`);
 
     try {
       if (isWindowElementQuery(needle)) {
-        this.providerRegistry.getLogProvider().debug(`Running a window element search`);
+        this.providerRegistry
+          .getLogProvider()
+          .debug(`Running a window element search`);
         const windowElement = await this.providerRegistry
           .getWindowElementInspector()
           .findElement(this.windowHandle, needle.by.description);
@@ -125,11 +134,11 @@ export class Window implements WindowInterface {
         return windowElement;
       }
       throw new Error(
-        `Search input is not supported. Please use a valid search input type.`
+        `Search input is not supported. Please use a valid search input type.`,
       );
     } catch (e) {
       const error = new Error(
-        `Searching for ${needle.id} failed. Reason: '${e}'`
+        `Searching for ${needle.id} failed. Reason: '${e}'`,
       );
       this.providerRegistry.getLogProvider().error(error);
       throw error;
@@ -141,14 +150,20 @@ export class Window implements WindowInterface {
    * @param searchInput A {@link WindowedFindInput} instance
    */
   public async findAll(
-    searchInput: WindowElementResultFindInput | Promise<WindowElementResultFindInput>
+    searchInput:
+      | WindowElementResultFindInput
+      | Promise<WindowElementResultFindInput>,
   ): Promise<WindowElement[]> {
     const needle = await searchInput;
-    this.providerRegistry.getLogProvider().info(`Searching for ${needle} in window ${this.windowHandle}`);
+    this.providerRegistry
+      .getLogProvider()
+      .info(`Searching for ${needle} in window ${this.windowHandle}`);
 
     try {
       if (isWindowElementQuery(needle)) {
-        this.providerRegistry.getLogProvider().debug(`Running a window element search`);
+        this.providerRegistry
+          .getLogProvider()
+          .debug(`Running a window element search`);
         const windowElements = await this.providerRegistry
           .getWindowElementInspector()
           .findElements(this.windowHandle, needle.by.description);
@@ -165,11 +180,11 @@ export class Window implements WindowInterface {
         return windowElements;
       }
       throw new Error(
-        `Search input is not supported. Please use a valid search input type.`
+        `Search input is not supported. Please use a valid search input type.`,
       );
     } catch (e) {
       const error = new Error(
-        `Searching for ${needle.id} failed. Reason: '${e}'`
+        `Searching for ${needle.id} failed. Reason: '${e}'`,
       );
       this.providerRegistry.getLogProvider().error(error);
       throw error;
@@ -187,7 +202,7 @@ export class Window implements WindowInterface {
     searchInput: WindowElementQuery | Promise<WindowElementQuery>,
     timeoutMs?: number,
     updateInterval?: number,
-    params?: OptionalSearchParameters<PROVIDER_DATA_TYPE>
+    params?: OptionalSearchParameters<PROVIDER_DATA_TYPE>,
   ): Promise<WindowElement> {
     const needle = await searchInput;
 
@@ -199,7 +214,7 @@ export class Window implements WindowInterface {
       .info(
         `Waiting for ${needle.id} to appear in window. Timeout: ${
           timeoutValue / 1000
-        } seconds, interval: ${updateIntervalValue} ms`
+        } seconds, interval: ${updateIntervalValue} ms`,
       );
     return timeout(
       updateIntervalValue,
@@ -208,8 +223,8 @@ export class Window implements WindowInterface {
         return this.find(needle);
       },
       {
-        signal: params?.abort
-      }
+        signal: params?.abort,
+      },
     );
   }
 
@@ -218,7 +233,10 @@ export class Window implements WindowInterface {
    * @param searchInput to trigger the callback on
    * @param callback The {@link FindHookCallback} function to trigger
    */
-  public on(searchInput: WindowElementQuery, callback: WindowElementCallback): void {
+  public on(
+    searchInput: WindowElementQuery,
+    callback: WindowElementCallback,
+  ): void {
     const existingHooks = this.getHooksForInput(searchInput);
     this.findHooks.set(searchInput, [...existingHooks, callback]);
     this.providerRegistry
@@ -226,13 +244,11 @@ export class Window implements WindowInterface {
       .info(
         `Registered callback for image ${searchInput.id}. There are currently ${
           existingHooks.length + 1
-        } hooks registered`
+        } hooks registered`,
       );
   }
 
-  private getHooksForInput(
-    input: WindowElementQuery
-  ): WindowElementCallback[] {
+  private getHooksForInput(input: WindowElementQuery): WindowElementCallback[] {
     return this.findHooks.get(input) ?? [];
   }
 }

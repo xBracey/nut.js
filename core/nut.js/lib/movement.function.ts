@@ -1,11 +1,11 @@
 import { MovementApi } from "./movement-api.interface";
-import { isPoint, Point } from "@nut-tree/shared";
+import { isPoint, Point } from "@nut-tree-macpad/shared";
 import { LineHelper } from "./util/linehelper.class";
-import { ProviderRegistry } from "@nut-tree/provider-interfaces";
+import { ProviderRegistry } from "@nut-tree-macpad/provider-interfaces";
 
 export const createMovementApi = (
   providerRegistry: ProviderRegistry,
-  lineHelper: LineHelper
+  lineHelper: LineHelper,
 ): MovementApi => {
   return {
     down: async (px: number): Promise<Point[]> => {
@@ -25,8 +25,8 @@ export const createMovementApi = (
       if (!isPoint(targetPoint)) {
         throw Error(
           `straightTo requires a Point, but received ${JSON.stringify(
-            targetPoint
-          )}`
+            targetPoint,
+          )}`,
         );
       }
       const origin = await providerRegistry.getMouse().currentMousePosition();
@@ -35,6 +35,6 @@ export const createMovementApi = (
     up: async (px: number): Promise<Point[]> => {
       const pos = await providerRegistry.getMouse().currentMousePosition();
       return lineHelper.straightLine(pos, new Point(pos.x, pos.y - px));
-    }
+    },
   };
 };

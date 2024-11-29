@@ -1,8 +1,11 @@
-import { Button, Point } from "@nut-tree/shared";
+import { Button, Point } from "@nut-tree-macpad/shared";
 import { MouseClass } from "./mouse.class";
 import { LineHelper } from "./util/linehelper.class";
 import { mockPartial } from "sneer";
-import { MouseProviderInterface, ProviderRegistry } from "@nut-tree/provider-interfaces";
+import {
+  MouseProviderInterface,
+  ProviderRegistry,
+} from "@nut-tree-macpad/provider-interfaces";
 import { NoopLogProvider } from "./provider/log/noop-log-provider.class";
 
 beforeEach(() => {
@@ -14,12 +17,12 @@ const linehelper = new LineHelper();
 const providerRegistryMock = mockPartial<ProviderRegistry>({
   getMouse(): MouseProviderInterface {
     return mockPartial<MouseProviderInterface>({
-      setMouseDelay: jest.fn()
+      setMouseDelay: jest.fn(),
     });
   },
   hasMouse(): boolean {
     return true;
-  }
+  },
 });
 
 describe("Mouse class", () => {
@@ -42,8 +45,8 @@ describe("Mouse class", () => {
     providerRegistryMock.getMouse = jest.fn(() =>
       mockPartial<MouseProviderInterface>({
         setMouseDelay: jest.fn(),
-        scrollLeft: scrollMock
-      })
+        scrollLeft: scrollMock,
+      }),
     );
     providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -64,8 +67,8 @@ describe("Mouse class", () => {
     providerRegistryMock.getMouse = jest.fn(() =>
       mockPartial<MouseProviderInterface>({
         setMouseDelay: jest.fn(),
-        scrollRight: scrollMock
-      })
+        scrollRight: scrollMock,
+      }),
     );
     providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -86,8 +89,8 @@ describe("Mouse class", () => {
     providerRegistryMock.getMouse = jest.fn(() =>
       mockPartial<MouseProviderInterface>({
         setMouseDelay: jest.fn(),
-        scrollDown: scrollMock
-      })
+        scrollDown: scrollMock,
+      }),
     );
     providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -108,8 +111,8 @@ describe("Mouse class", () => {
     providerRegistryMock.getMouse = jest.fn(() =>
       mockPartial<MouseProviderInterface>({
         setMouseDelay: jest.fn(),
-        scrollUp: scrollMock
-      })
+        scrollUp: scrollMock,
+      }),
     );
     providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -130,8 +133,8 @@ describe("Mouse class", () => {
     providerRegistryMock.getMouse = jest.fn(() =>
       mockPartial<MouseProviderInterface>({
         setMouseDelay: jest.fn(),
-        setMousePosition: setPositionMock
-      })
+        setMousePosition: setPositionMock,
+      }),
     );
     providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -152,8 +155,8 @@ describe("Mouse class", () => {
     providerRegistryMock.getMouse = jest.fn(() =>
       mockPartial<MouseProviderInterface>({
         setMouseDelay: jest.fn(),
-        setMousePosition: setPositionMock
-      })
+        setMousePosition: setPositionMock,
+      }),
     );
     providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -179,8 +182,8 @@ describe("Mouse class", () => {
         setMouseDelay: jest.fn(),
         setMousePosition: setPositionMock,
         pressButton: pressButtonMock,
-        releaseButton: releaseButtonMock
-      })
+        releaseButton: releaseButtonMock,
+      }),
     );
     providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -198,7 +201,7 @@ describe("Mouse class", () => {
     it.each([
       [Button.LEFT, Button.LEFT],
       [Button.MIDDLE, Button.MIDDLE],
-      [Button.RIGHT, Button.RIGHT]
+      [Button.RIGHT, Button.RIGHT],
     ] as Array<[Button, Button]>)(
       "should be pressed and released",
       async (input: Button, expected: Button) => {
@@ -210,8 +213,8 @@ describe("Mouse class", () => {
           mockPartial<MouseProviderInterface>({
             setMouseDelay: jest.fn(),
             pressButton: pressButtonMock,
-            releaseButton: releaseButtonMock
-          })
+            releaseButton: releaseButtonMock,
+          }),
         );
         providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -224,7 +227,7 @@ describe("Mouse class", () => {
         expect(releaseButtonMock).toHaveBeenCalledWith(expected);
         expect(pressed).toBe(SUT);
         expect(released).toBe(SUT);
-      }
+      },
     );
 
     describe("autoDelayMs", () => {
@@ -238,8 +241,8 @@ describe("Mouse class", () => {
         providerRegistryMock.getMouse = jest.fn(() =>
           mockPartial<MouseProviderInterface>({
             setMouseDelay: jest.fn(),
-            pressButton: mouseMock
-          })
+            pressButton: mouseMock,
+          }),
         );
         providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -262,8 +265,8 @@ describe("Mouse class", () => {
         providerRegistryMock.getMouse = jest.fn(() =>
           mockPartial<MouseProviderInterface>({
             setMouseDelay: jest.fn(),
-            releaseButton: mouseMock
-          })
+            releaseButton: mouseMock,
+          }),
         );
         providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -283,7 +286,7 @@ describe("Mouse class", () => {
       it.each([
         [Button.LEFT, Button.LEFT],
         [Button.MIDDLE, Button.MIDDLE],
-        [Button.RIGHT, Button.RIGHT]
+        [Button.RIGHT, Button.RIGHT],
       ] as Array<[Button, Button]>)(
         "should click the respective button on the provider",
         async (input: Button, expected: Button) => {
@@ -293,8 +296,8 @@ describe("Mouse class", () => {
           providerRegistryMock.getMouse = jest.fn(() =>
             mockPartial<MouseProviderInterface>({
               setMouseDelay: jest.fn(),
-              click: clickMock
-            })
+              click: clickMock,
+            }),
           );
           providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -303,7 +306,7 @@ describe("Mouse class", () => {
 
           // THEN
           expect(clickMock).toHaveBeenCalledWith(expected);
-        }
+        },
       );
     });
 
@@ -311,7 +314,7 @@ describe("Mouse class", () => {
       it.each([
         [Button.LEFT, Button.LEFT],
         [Button.MIDDLE, Button.MIDDLE],
-        [Button.RIGHT, Button.RIGHT]
+        [Button.RIGHT, Button.RIGHT],
       ] as Array<[Button, Button]>)(
         "should click the respective button on the provider",
         async (input: Button, expected: Button) => {
@@ -321,8 +324,8 @@ describe("Mouse class", () => {
           providerRegistryMock.getMouse = jest.fn(() =>
             mockPartial<MouseProviderInterface>({
               setMouseDelay: jest.fn(),
-              doubleClick: clickMock
-            })
+              doubleClick: clickMock,
+            }),
           );
           providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -331,7 +334,7 @@ describe("Mouse class", () => {
 
           // THEN
           expect(clickMock).toHaveBeenCalledWith(expected);
-        }
+        },
       );
     });
 
@@ -345,8 +348,8 @@ describe("Mouse class", () => {
         providerRegistryMock.getMouse = jest.fn(() =>
           mockPartial<MouseProviderInterface>({
             setMouseDelay: jest.fn(),
-            click: clickMock
-          })
+            click: clickMock,
+          }),
         );
         providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 
@@ -370,8 +373,8 @@ describe("Mouse class", () => {
         providerRegistryMock.getMouse = jest.fn(() =>
           mockPartial<MouseProviderInterface>({
             setMouseDelay: jest.fn(),
-            click: clickMock
-          })
+            click: clickMock,
+          }),
         );
         providerRegistryMock.getLogProvider = () => new NoopLogProvider();
 

@@ -1,18 +1,18 @@
-import { Image, Region, TextQuery } from "@nut-tree/shared";
+import { Image, Region, TextQuery } from "@nut-tree-macpad/shared";
 import {
   createMatchRequest,
   getMatchResult,
   getMatchResults,
   isImageMatchRequest,
-  isTextMatchRequest
+  isTextMatchRequest,
 } from "./screen-helpers.function";
 import { mockPartial } from "sneer";
 import {
   ImageFinderInterface,
   LogProviderInterface,
   ProviderRegistry,
-  TextFinderInterface
-} from "@nut-tree/provider-interfaces";
+  TextFinderInterface,
+} from "@nut-tree-macpad/provider-interfaces";
 import { NoopLogProvider } from "./provider/log/noop-log-provider.class";
 
 beforeEach(() => {
@@ -21,11 +21,11 @@ beforeEach(() => {
 
 const imageFinderMock: ImageFinderInterface = {
   findMatch: jest.fn(),
-  findMatches: jest.fn()
+  findMatches: jest.fn(),
 };
 const textFinderMock: TextFinderInterface = {
   findMatch: jest.fn(),
-  findMatches: jest.fn()
+  findMatches: jest.fn(),
 };
 
 const providerRegistryMock = mockPartial<ProviderRegistry>({
@@ -37,7 +37,7 @@ const providerRegistryMock = mockPartial<ProviderRegistry>({
   },
   getTextFinder(): TextFinderInterface {
     return textFinderMock as unknown as TextFinderInterface;
-  }
+  },
 });
 
 const screenImage = new Image(0, 0, Buffer.of(0), 3, "dummy", 0, 0);
@@ -55,7 +55,7 @@ describe("screen helpers", () => {
         needle,
         dummyRegion,
         0,
-        screenImage
+        screenImage,
       );
 
       // THEN
@@ -67,16 +67,16 @@ describe("screen helpers", () => {
         id: "dummy",
         type: "text",
         by: {
-          word: "dummy-query"
-        }
+          word: "dummy-query",
+        },
       },
       {
         id: "dummy",
         type: "text",
         by: {
-          line: "dummy-query"
-        }
-      }
+          line: "dummy-query",
+        },
+      },
     ])(
       "should create a text match request for text queries",
       (needle: TextQuery) => {
@@ -88,12 +88,12 @@ describe("screen helpers", () => {
           needle,
           dummyRegion,
           0,
-          screenImage
+          screenImage,
         );
 
         // THEN
         expect(isTextMatchRequest(matchRequest)).toBeTruthy();
-      }
+      },
     );
   });
 
@@ -108,7 +108,7 @@ describe("screen helpers", () => {
           dummyImage,
           dummyRegion,
           0,
-          screenImage
+          screenImage,
         );
 
         // WHEN
@@ -123,16 +123,16 @@ describe("screen helpers", () => {
           id: "dummy",
           type: "text",
           by: {
-            word: "dummy-query"
-          }
+            word: "dummy-query",
+          },
         },
         {
           id: "dummy",
           type: "text",
           by: {
-            line: "dummy-query"
-          }
-        }
+            line: "dummy-query",
+          },
+        },
       ])(
         "should all the correct finder implementation for a given text query",
         async (needle: TextQuery) => {
@@ -142,7 +142,7 @@ describe("screen helpers", () => {
             needle,
             dummyRegion,
             0,
-            screenImage
+            screenImage,
           );
 
           // WHEN
@@ -150,7 +150,7 @@ describe("screen helpers", () => {
 
           // THEN
           expect(textFinderMock.findMatch).toHaveBeenCalledTimes(1);
-        }
+        },
       );
     });
 
@@ -162,7 +162,7 @@ describe("screen helpers", () => {
           dummyImage,
           dummyRegion,
           0,
-          screenImage
+          screenImage,
         );
 
         // WHEN
@@ -177,16 +177,16 @@ describe("screen helpers", () => {
           id: "dummy",
           type: "text",
           by: {
-            word: "dummy-query"
-          }
+            word: "dummy-query",
+          },
         },
         {
           id: "dummy",
           type: "text",
           by: {
-            line: "dummy-query"
-          }
-        }
+            line: "dummy-query",
+          },
+        },
       ])(
         "should all the correct finder implementation for a given text query",
         async (needle: TextQuery) => {
@@ -196,7 +196,7 @@ describe("screen helpers", () => {
             needle,
             dummyRegion,
             0,
-            screenImage
+            screenImage,
           );
 
           // WHEN
@@ -204,7 +204,7 @@ describe("screen helpers", () => {
 
           // THEN
           expect(textFinderMock.findMatches).toHaveBeenCalledTimes(1);
-        }
+        },
       );
     });
   });

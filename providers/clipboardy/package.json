@@ -1,7 +1,7 @@
 {
-  "name": "@nut-tree/default-clipboard-provider",
+  "name": "@nut-tree-macpad/default-clipboard-provider",
   "version": "4.2.0",
-  "description": "The @nut-tree/nut-js default clipboard provider based on clipboardy",
+  "description": "The @nut-tree-macpad/nut-js default clipboard provider based on clipboardy",
   "main": "dist/index",
   "typings": "dist/index",
   "scripts": {
@@ -30,10 +30,10 @@
     "clipboardy": "2.3.0"
   },
   "devDependencies": {
-    "@nut-tree/provider-interfaces": "workspace:*",
-    "@nut-tree/configs": "workspace:*"
+    "@nut-tree-macpad/provider-interfaces": "workspace:*",
+    "@nut-tree-macpad/configs": "workspace:*"
   },
   "peerDependencies": {
-    "@nut-tree/nut-js": "^3"
+    "@nut-tree-macpad/nut-js": "workspace:*"
   }
 }

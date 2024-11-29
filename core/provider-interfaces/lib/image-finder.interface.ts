@@ -1,4 +1,9 @@
-import { Image, MatchRequest, MatchResult, Region } from "@nut-tree/shared";
+import {
+  Image,
+  MatchRequest,
+  MatchResult,
+  Region,
+} from "@nut-tree-macpad/shared";
 
 /**
  * An ImageFinder should provide an abstraction layer to perform image matching

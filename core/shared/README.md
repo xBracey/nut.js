@@ -1,3 +1,3 @@
-# @nut-tree/shared
+# @nut-tree-macpad/shared
 
-This package contains shared code to be used by the @nut-tree/nut-js and e.g. provider implementations.
+This package contains shared code to be used by the @nut-tree-macpad/nut-js and e.g. provider implementations.

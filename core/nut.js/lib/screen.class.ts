@@ -22,24 +22,24 @@ import {
   RegionResultFindInput,
   WindowCallback,
   WindowResultFindInput,
-  WordQuery
-} from "@nut-tree/shared";
+  WordQuery,
+} from "@nut-tree-macpad/shared";
 import { generateOutputPath } from "./generate-output-path.function";
 import { timeout } from "./util/timeout.function";
 import { Window } from "./window.class";
-import { ProviderRegistry } from "@nut-tree/provider-interfaces";
+import { ProviderRegistry } from "@nut-tree-macpad/provider-interfaces";
 import {
   createMatchRequest,
   getMatchResult,
   getMatchResults,
   isPointResultFindInput,
-  isRegionResultFindInput
+  isRegionResultFindInput,
 } from "./screen-helpers.function";
 
 function validateSearchRegion(
   search: Region,
   screen: Region,
-  providerRegistry: ProviderRegistry
+  providerRegistry: ProviderRegistry,
 ) {
   providerRegistry
     .getLogProvider()
@@ -66,7 +66,7 @@ function validateSearchRegion(
   }
   if (search.width < 2 || search.height < 2) {
     const e = new Error(
-      `Search region is not large enough. Must be at least two pixels in both width and height.`
+      `Search region is not large enough. Must be at least two pixels in both width and height.`,
     );
     providerRegistry.getLogProvider().error(e, { region: search });
     throw e;
@@ -76,7 +76,7 @@ function validateSearchRegion(
     search.top + search.height > screen.height
   ) {
     const e = new Error(
-      `Search region extends beyond screen boundaries (${screen.width}x${screen.height})`
+      `Search region extends beyond screen boundaries (${screen.width}x${screen.height})`,
     );
     providerRegistry.getLogProvider().error(e, { region: search, screen });
     throw e;
@@ -121,7 +121,7 @@ export class ScreenClass {
     autoHighlight: false,
     highlightDurationMs: 500,
     highlightOpacity: 0.25,
-    resourceDirectory: cwd()
+    resourceDirectory: cwd(),
   };
 
   /**
@@ -134,9 +134,8 @@ export class ScreenClass {
     private findHooks: Map<FindInput, FindHookCallback[]> = new Map<
       FindInput,
       FindHookCallback[]
-    >()
-  ) {
-  }
+    >(),
+  ) {}
 
   /**
    * {@link width} returns the main screen width
@@ -165,23 +164,23 @@ export class ScreenClass {
    */
   public async find<PROVIDER_DATA_TYPE>(
     searchInput: RegionResultFindInput | Promise<RegionResultFindInput>,
-    params?: OptionalSearchParameters<PROVIDER_DATA_TYPE>
+    params?: OptionalSearchParameters<PROVIDER_DATA_TYPE>,
   ): Promise<Region>;
   public async find<PROVIDER_DATA_TYPE>(
     searchInput: PointResultFindInput | Promise<PointResultFindInput>,
-    params?: OptionalSearchParameters<PROVIDER_DATA_TYPE>
+    params?: OptionalSearchParameters<PROVIDER_DATA_TYPE>,
   ): Promise<Point>;
   public async find<PROVIDER_DATA_TYPE>(
     searchInput: WindowResultFindInput | Promise<WindowResultFindInput>,
-    params?: OptionalSearchParameters<PROVIDER_DATA_TYPE>
+    params?: OptionalSearchParameters<PROVIDER_DATA_TYPE>,
   ): Promise<Window>;
   public async find<PROVIDER_DATA_TYPE>(
     searchInput: FindInput | Promise<FindInput>,
-    params?: OptionalSearchParameters<PROVIDER_DATA_TYPE>
+    params?: OptionalSearchParameters<PROVIDER_DATA_TYPE>,
   ): Promise<FindResult>;
   public async find<PROVIDER_DATA_TYPE>(
     searchInput: FindInput | Promise<FindInput>,
-    params?: OptionalSearchParameters<PROVIDER_DATA_TYPE>
+    params?: OptionalSearchParameters<PROVIDER_DATA_TYPE>,
   ): Promise<FindResult> {
     const needle = await searchInput;
     this.providerRegistry.getLogProvider().info(`Searching for ${needle}`);
@@ -219,7 +218,7 @@ export class ScreenClass {
           searchRegion,
           minMatch,
           screenImage,
-          params
+          params,
         );
 
         if (isRegionResultFindInput(needle)) {
@@ -228,7 +227,7 @@ export class ScreenClass {
             matchRequest as MatchRequest<
               RegionResultFindInput,
               PROVIDER_DATA_TYPE
-            >
+            >,
           );
 
           this.providerRegistry
@@ -248,7 +247,7 @@ export class ScreenClass {
             searchRegion.left + matchResult.location.left,
             searchRegion.top + matchResult.location.top,
             matchResult.location.width,
-            matchResult.location.height
+            matchResult.location.height,
           );
 
           this.providerRegistry
@@ -269,7 +268,7 @@ export class ScreenClass {
             matchRequest as MatchRequest<
               PointResultFindInput,
               PROVIDER_DATA_TYPE
-            >
+            >,
           );
 
           this.providerRegistry
@@ -287,7 +286,7 @@ export class ScreenClass {
 
           const resultPoint = new Point(
             searchRegion.left + matchResult.location.x,
-            searchRegion.top + matchResult.location.y
+            searchRegion.top + matchResult.location.y,
           );
 
           this.providerRegistry
@@ -298,11 +297,11 @@ export class ScreenClass {
         }
       }
       throw new Error(
-        `Search input is not supported. Please use a valid search input type.`
+        `Search input is not supported. Please use a valid search input type.`,
       );
     } catch (e) {
       const error = new Error(
-        `Searching for ${needle.id} failed. Reason: '${e}'`
+        `Searching for ${needle.id} failed. Reason: '${e}'`,
       );
       this.providerRegistry.getLogProvider().error(error);
       throw error;
@@ -316,23 +315,23 @@ export class ScreenClass {
    */
   public async findAll<PROVIDER_DATA_TYPE>(
     searchInput: RegionResultFindInput | Promise<RegionResultFindInput>,
-    params?: OptionalSearchParameters<PROVIDER_DATA_TYPE>
+    params?: OptionalSearchParameters<PROVIDER_DATA_TYPE>,
   ): Promise<Region[]>;
   public async findAll<PROVIDER_DATA_TYPE>(
     searchInput: PointResultFindInput | Promise<PointResultFindInput>,
-    params?: OptionalSearchParameters<PROVIDER_DATA_TYPE>
+    params?: OptionalSearchParameters<PROVIDER_DATA_TYPE>,
   ): Promise<Point[]>;
   public async findAll<PROVIDER_DATA_TYPE>(
     searchInput: WindowResultFindInput | Promise<WindowResultFindInput>,
-    params?: OptionalSearchParameters<PROVIDER_DATA_TYPE>
+    params?: OptionalSearchParameters<PROVIDER_DATA_TYPE>,
   ): Promise<Window[]>;
   public async findAll<PROVIDER_DATA_TYPE>(
     searchInput: FindInput | Promise<FindInput>,
-    params?: OptionalSearchParameters<PROVIDER_DATA_TYPE>
+    params?: OptionalSearchParameters<PROVIDER_DATA_TYPE>,
   ): Promise<FindResult[]>;
   public async findAll<PROVIDER_DATA_TYPE>(
     searchInput: FindInput | Promise<FindInput>,
-    params?: OptionalSearchParameters<PROVIDER_DATA_TYPE>
+    params?: OptionalSearchParameters<PROVIDER_DATA_TYPE>,
   ): Promise<FindResult[]> {
     const needle = await searchInput;
     this.providerRegistry.getLogProvider().info(`Searching for ${needle}`);
@@ -346,13 +345,13 @@ export class ScreenClass {
           .findMatches(needle);
         const windows = matches.map(
           (windowHandle: number) =>
-            new Window(this.providerRegistry, windowHandle)
+            new Window(this.providerRegistry, windowHandle),
         );
         const possibleHooks = this.getHooksForInput(needle) || [];
         this.providerRegistry
           .getLogProvider()
           .debug(
-            `${possibleHooks.length} hooks triggered for ${windows.length} matches`
+            `${possibleHooks.length} hooks triggered for ${windows.length} matches`,
           );
         for (const hook of possibleHooks) {
           for (const wnd of windows) {
@@ -372,7 +371,7 @@ export class ScreenClass {
           searchRegion,
           minMatch,
           screenImage,
-          params
+          params,
         );
 
         validateSearchRegion(searchRegion, screenSize, this.providerRegistry);
@@ -380,13 +379,13 @@ export class ScreenClass {
 
         const matchResults = await getMatchResults(
           this.providerRegistry,
-          matchRequest
+          matchRequest,
         );
         const possibleHooks = this.getHooksForInput(needle) || [];
         this.providerRegistry
           .getLogProvider()
           .debug(
-            `${possibleHooks.length} hooks triggered for ${matchResults.length} matches`
+            `${possibleHooks.length} hooks triggered for ${matchResults.length} matches`,
           );
         for (const hook of possibleHooks) {
           for (const matchResult of matchResults) {
@@ -399,7 +398,7 @@ export class ScreenClass {
             searchRegion.left + matchResult.location.left,
             searchRegion.top + matchResult.location.top,
             matchResult.location.width,
-            matchResult.location.height
+            matchResult.location.height,
           );
           this.providerRegistry
             .getLogProvider()
@@ -432,7 +431,7 @@ export class ScreenClass {
           searchRegion,
           0,
           screenImage,
-          params
+          params,
         );
 
         validateSearchRegion(searchRegion, screenSize, this.providerRegistry);
@@ -440,13 +439,13 @@ export class ScreenClass {
 
         const matchResults = await getMatchResults(
           this.providerRegistry,
-          matchRequest
+          matchRequest,
         );
         const possibleHooks = this.getHooksForInput(needle) || [];
         this.providerRegistry
           .getLogProvider()
           .debug(
-            `${possibleHooks.length} hooks triggered for ${matchResults.length} matches`
+            `${possibleHooks.length} hooks triggered for ${matchResults.length} matches`,
           );
         for (const hook of possibleHooks) {
           for (const matchResult of matchResults) {
@@ -457,7 +456,7 @@ export class ScreenClass {
         return matchResults.map((matchResult) => {
           const resultPoint = new Point(
             searchRegion.left + matchResult.location.x,
-            searchRegion.top + matchResult.location.y
+            searchRegion.top + matchResult.location.y,
           );
           this.providerRegistry
             .getLogProvider()
@@ -466,11 +465,11 @@ export class ScreenClass {
         });
       }
       throw new Error(
-        `Search input is not supported. Please use a valid search input type.`
+        `Search input is not supported. Please use a valid search input type.`,
       );
     } catch (e) {
       const error = new Error(
-        `Searching for ${needle.id} failed. Reason: '${e}'`
+        `Searching for ${needle.id} failed. Reason: '${e}'`,
       );
       this.providerRegistry.getLogProvider().error(error);
       throw error;
@@ -482,14 +481,14 @@ export class ScreenClass {
    * @param regionToHighlight The {@link Region} to highlight
    */
   public async highlight(
-    regionToHighlight: Region | Promise<Region>
+    regionToHighlight: Region | Promise<Region>,
   ): Promise<Region> {
     const highlightRegion = await regionToHighlight;
     if (!isRegion(highlightRegion)) {
       const e = Error(
         `highlight requires an Region, but received ${JSON.stringify(
-          highlightRegion
-        )}`
+          highlightRegion,
+        )}`,
       );
       this.providerRegistry.getLogProvider().error(e);
       throw e;
@@ -499,14 +498,14 @@ export class ScreenClass {
       .info(
         `Highlighting ${highlightRegion.toString()} for ${
           this.config.highlightDurationMs / 1000
-        } with ${this.config.highlightOpacity * 100}% opacity`
+        } with ${this.config.highlightOpacity * 100}% opacity`,
       );
     await this.providerRegistry
       .getScreen()
       .highlightScreenRegion(
         highlightRegion,
         this.config.highlightDurationMs,
-        this.config.highlightOpacity
+        this.config.highlightOpacity,
       );
     return highlightRegion;
   }
@@ -522,25 +521,25 @@ export class ScreenClass {
     searchInput: RegionResultFindInput | Promise<RegionResultFindInput>,
     timeoutMs?: number,
     updateInterval?: number,
-    params?: OptionalSearchParameters<PROVIDER_DATA_TYPE>
+    params?: OptionalSearchParameters<PROVIDER_DATA_TYPE>,
   ): Promise<Region>;
   public async waitFor<PROVIDER_DATA_TYPE>(
     searchInput: PointResultFindInput | Promise<PointResultFindInput>,
     timeoutMs?: number,
     updateInterval?: number,
-    params?: OptionalSearchParameters<PROVIDER_DATA_TYPE>
+    params?: OptionalSearchParameters<PROVIDER_DATA_TYPE>,
   ): Promise<Point>;
   public async waitFor<PROVIDER_DATA_TYPE>(
     searchInput: WindowResultFindInput | Promise<WindowResultFindInput>,
     timeoutMs?: number,
     updateInterval?: number,
-    params?: OptionalSearchParameters<PROVIDER_DATA_TYPE>
+    params?: OptionalSearchParameters<PROVIDER_DATA_TYPE>,
   ): Promise<Window>;
   public async waitFor<PROVIDER_DATA_TYPE>(
     searchInput: FindInput | Promise<FindInput>,
     timeoutMs?: number,
     updateInterval?: number,
-    params?: OptionalSearchParameters<PROVIDER_DATA_TYPE>
+    params?: OptionalSearchParameters<PROVIDER_DATA_TYPE>,
   ): Promise<FindResult> {
     const needle = await searchInput;
 
@@ -554,7 +553,7 @@ export class ScreenClass {
       .info(
         `Waiting for ${needle.id} to appear on screen. Timeout: ${
           timeoutValue / 1000
-        } seconds, interval: ${updateIntervalValue} ms`
+        } seconds, interval: ${updateIntervalValue} ms`,
       );
     return timeout(
       updateIntervalValue,
@@ -563,8 +562,8 @@ export class ScreenClass {
         return this.find(needle, params);
       },
       {
-        signal: params?.abort
-      }
+        signal: params?.abort,
+      },
     );
   }
 
@@ -576,11 +575,11 @@ export class ScreenClass {
   public on(searchInput: WindowResultFindInput, callback: WindowCallback): void;
   public on(
     searchInput: PointResultFindInput,
-    callback: MatchResultCallback<Point>
+    callback: MatchResultCallback<Point>,
   ): void;
   public on(
     searchInput: RegionResultFindInput,
-    callback: MatchResultCallback<Region>
+    callback: MatchResultCallback<Region>,
   ): void;
   public on(searchInput: FindInput, callback: FindHookCallback): void {
     this.validateSearchInput("on", searchInput);
@@ -592,7 +591,7 @@ export class ScreenClass {
       .info(
         `Registered callback for image ${searchInput.id}. There are currently ${
           existingHooks.length + 1
-        } hooks registered`
+        } hooks registered`,
       );
   }
 
@@ -609,14 +608,14 @@ export class ScreenClass {
     fileFormat: FileType = FileType.PNG,
     filePath: string = cwd(),
     fileNamePrefix: string = "",
-    fileNamePostfix: string = ""
+    fileNamePostfix: string = "",
   ): Promise<string> {
     const currentScreen = await this.providerRegistry.getScreen().grabScreen();
     if (!isImage(currentScreen)) {
       const e = new Error(
         `capture requires an Image, but received ${JSON.stringify(
-          currentScreen
-        )}`
+          currentScreen,
+        )}`,
       );
       this.providerRegistry.getLogProvider().error(e);
       throw e;
@@ -624,7 +623,7 @@ export class ScreenClass {
     this.providerRegistry
       .getLogProvider()
       .info(
-        `Capturing whole screen (0, 0, ${currentScreen.width}, ${currentScreen.height})`
+        `Capturing whole screen (0, 0, ${currentScreen.width}, ${currentScreen.height})`,
       );
     return this.saveImage(
       currentScreen,
@@ -632,7 +631,7 @@ export class ScreenClass {
       fileFormat,
       filePath,
       fileNamePrefix,
-      fileNamePostfix
+      fileNamePostfix,
     );
   }
 
@@ -644,7 +643,7 @@ export class ScreenClass {
     this.providerRegistry
       .getLogProvider()
       .info(
-        `Grabbed whole screen (0, 0, ${currentScreen.width}, ${currentScreen.height})`
+        `Grabbed whole screen (0, 0, ${currentScreen.width}, ${currentScreen.height})`,
       );
     return currentScreen;
   }
@@ -664,14 +663,14 @@ export class ScreenClass {
     fileFormat: FileType = FileType.PNG,
     filePath: string = cwd(),
     fileNamePrefix: string = "",
-    fileNamePostfix: string = ""
+    fileNamePostfix: string = "",
   ): Promise<string> {
     const targetRegion = await regionToCapture;
     if (!isRegion(targetRegion)) {
       const e = new Error(
         `captureRegion requires an Region, but received ${JSON.stringify(
-          targetRegion
-        )}`
+          targetRegion,
+        )}`,
       );
       this.providerRegistry.getLogProvider().error(e);
       throw e;
@@ -685,8 +684,8 @@ export class ScreenClass {
     if (!isImage(regionImage)) {
       const e = new Error(
         `captureRegion requires an Image, but received ${JSON.stringify(
-          regionImage
-        )}`
+          regionImage,
+        )}`,
       );
       this.providerRegistry.getLogProvider().error(e);
       throw e;
@@ -697,7 +696,7 @@ export class ScreenClass {
       fileFormat,
       filePath,
       fileNamePrefix,
-      fileNamePostfix
+      fileNamePostfix,
     );
   }
 
@@ -706,14 +705,14 @@ export class ScreenClass {
    * @param regionToGrab The screen region to grab
    */
   public async grabRegion(
-    regionToGrab: Region | Promise<Region>
+    regionToGrab: Region | Promise<Region>,
   ): Promise<Image> {
     const targetRegion = await regionToGrab;
     if (!isRegion(targetRegion)) {
       const e = new Error(
         `grabRegion requires an Region, but received ${JSON.stringify(
-          targetRegion
-        )}`
+          targetRegion,
+        )}`,
       );
       this.providerRegistry.getLogProvider().error(e);
       throw e;
@@ -736,14 +735,14 @@ export class ScreenClass {
     const inputPoint = await point;
     if (!isPoint(inputPoint)) {
       const e = new Error(
-        `colorAt requires a Point, but received ${JSON.stringify(inputPoint)}`
+        `colorAt requires a Point, but received ${JSON.stringify(inputPoint)}`,
       );
       this.providerRegistry.getLogProvider().error(e);
       throw e;
     }
     const scaledPoint = new Point(
       inputPoint.x * screenContent.pixelDensity.scaleX,
-      inputPoint.y * screenContent.pixelDensity.scaleY
+      inputPoint.y * screenContent.pixelDensity.scaleY,
     );
     this.providerRegistry
       .getLogProvider()
@@ -752,7 +751,7 @@ export class ScreenClass {
           screenContent.pixelDensity.scaleX
         }, ${
           screenContent.pixelDensity.scaleY
-        }) into ${scaledPoint.toString()}`
+        }) into ${scaledPoint.toString()}`,
       );
     const color = await this.providerRegistry
       .getImageProcessor()
@@ -769,13 +768,13 @@ export class ScreenClass {
     fileFormat: FileType,
     filePath: string,
     fileNamePrefix: string,
-    fileNamePostfix: string
+    fileNamePostfix: string,
   ) {
     const outputPath = generateOutputPath(fileName, {
       path: filePath,
       postfix: fileNamePostfix,
       prefix: fileNamePrefix,
-      type: fileFormat
+      type: fileFormat,
     });
     this.providerRegistry
       .getLogProvider()
@@ -788,7 +787,7 @@ export class ScreenClass {
   }
 
   private async getFindParameters<PROVIDER_DATA_TYPE>(
-    params?: OptionalSearchParameters<PROVIDER_DATA_TYPE>
+    params?: OptionalSearchParameters<PROVIDER_DATA_TYPE>,
   ) {
     const minMatch = params?.confidence;
     const screenSize = await this.providerRegistry.getScreen().screenSize();
@@ -801,27 +800,27 @@ export class ScreenClass {
       minMatch,
       screenSize,
       searchRegion,
-      screenImage
+      screenImage,
     };
     this.providerRegistry
       .getLogProvider()
       .debug(`Running on-screen search with parameters`, {
         minMatch,
         screenSize,
-        searchRegion
+        searchRegion,
       });
     return findParameters;
   }
 
   private getHooksForInput(input: WindowResultFindInput): WindowCallback[];
   private getHooksForInput(
-    input: RegionResultFindInput
+    input: RegionResultFindInput,
   ): MatchResultCallback<Region>[];
   private getHooksForInput(
-    input: PointResultFindInput
+    input: PointResultFindInput,
   ): MatchResultCallback<Point>[];
   private getHooksForInput(
-    input: FindInput
+    input: FindInput,
   ):
     | MatchResultCallback<Point>[]
     | MatchResultCallback<Region>[]
@@ -852,7 +851,7 @@ export class ScreenClass {
       | LineQuery
       | WindowResultFindInput
       | PointResultFindInput
-      | Promise<FindInput>
+      | Promise<FindInput>,
   ) {
     if (
       !isImage(needle) &&
@@ -862,8 +861,8 @@ export class ScreenClass {
     ) {
       const e = Error(
         `${functionName} requires an Image, a text query, a color query or a window query, but received ${JSON.stringify(
-          needle
-        )}`
+          needle,
+        )}`,
       );
       this.providerRegistry.getLogProvider().error(e, { needle });
       throw e;

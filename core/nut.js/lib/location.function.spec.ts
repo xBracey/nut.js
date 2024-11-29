@@ -1,5 +1,5 @@
 import { centerOf, randomPointIn } from "./location.function";
-import { Point, Region } from "@nut-tree/shared";
+import { Point, Region } from "@nut-tree-macpad/shared";
 
 describe("Location", () => {
   describe("centerOf", () => {
@@ -14,11 +14,11 @@ describe("Location", () => {
       const testRegion = {
         left: 0,
         top: 0,
-        width: 4
+        width: 4,
       };
 
       await expect(centerOf(testRegion as Region)).rejects.toThrowError(
-        /^centerOf requires a Region, but received/
+        /^centerOf requires a Region, but received/,
       );
     });
   });
@@ -37,11 +37,11 @@ describe("Location", () => {
       const testRegion = {
         left: 0,
         top: 0,
-        width: 4
+        width: 4,
       };
 
       await expect(randomPointIn(testRegion as Region)).rejects.toThrowError(
-        /^randomPointIn requires a Region, but received/
+        /^randomPointIn requires a Region, but received/,
       );
     });
   });

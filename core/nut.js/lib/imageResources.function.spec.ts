@@ -1,16 +1,19 @@
 import { fetchFromUrl, loadImageResource } from "./imageResources.function";
 import { mockPartial } from "sneer";
-import { ImageReader, ProviderRegistry } from "@nut-tree/provider-interfaces";
+import {
+  ImageReader,
+  ProviderRegistry,
+} from "@nut-tree-macpad/provider-interfaces";
 import { join } from "path";
-import { ColorMode } from "@nut-tree/shared";
+import { ColorMode } from "@nut-tree-macpad/shared";
 
 const loadMock = jest.fn();
 const providerRegistryMock = mockPartial<ProviderRegistry>({
   getImageReader(): ImageReader {
     return mockPartial<ImageReader>({
-      load: loadMock
+      load: loadMock,
     });
-  }
+  },
 });
 
 describe("imageResources", () => {
@@ -23,11 +26,13 @@ describe("imageResources", () => {
     await loadImageResource(
       providerRegistryMock,
       resourceDirectoryPath,
-      imageFileName
+      imageFileName,
     );
 
     // THEN
-    expect(loadMock).toHaveBeenCalledWith(join(resourceDirectoryPath, imageFileName));
+    expect(loadMock).toHaveBeenCalledWith(
+      join(resourceDirectoryPath, imageFileName),
+    );
   });
 });
 
@@ -41,7 +46,7 @@ describe("fetchFromUrl", () => {
 
     // THEN
     await expect(SUT).rejects.toThrowError(
-      "Failed to fetch image data. Reason: Invalid URL"
+      "Failed to fetch image data. Reason: Invalid URL",
     );
   });
 
@@ -54,7 +59,7 @@ describe("fetchFromUrl", () => {
 
     // THEN
     await expect(SUT).rejects.toThrowError(
-      "Failed to parse image data. Reason: Could not find MIME for Buffer"
+      "Failed to parse image data. Reason: Could not find MIME for Buffer",
     );
   });
 
@@ -64,7 +69,7 @@ describe("fetchFromUrl", () => {
       "https://github.com/nut-tree/nut.js/raw/master/.gfx/nut.png";
     const expectedDimensions = {
       width: 502,
-      height: 411
+      height: 411,
     };
     const expectedColorMode = ColorMode.RGB;
 

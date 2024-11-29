@@ -13,8 +13,8 @@ import {
   TextFinderInterface,
   WindowFinderInterface,
   WindowProviderInterface,
-  ElementInspectionProviderInterface
-} from "@nut-tree/provider-interfaces";
+  ElementInspectionProviderInterface,
+} from "@nut-tree-macpad/provider-interfaces";
 
 import ImageReaderImpl from "./io/jimp-image-reader.class";
 import ImageWriterImpl from "./io/jimp-image-writer.class";
@@ -27,10 +27,9 @@ import {
   DISABLE_DEFAULT_MOUSE_PROVIDER_ENV_VAR,
   DISABLE_DEFAULT_PROVIDERS_ENV_VAR,
   DISABLE_DEFAULT_SCREEN_PROVIDER_ENV_VAR,
-  DISABLE_DEFAULT_WINDOW_PROVIDER_ENV_VAR
+  DISABLE_DEFAULT_WINDOW_PROVIDER_ENV_VAR,
 } from "../constants";
 import { wrapLogger } from "./log/wrap-logger.function";
-
 
 class DefaultProviderRegistry implements ProviderRegistry {
   private _clipboard?: ClipboardProviderInterface;
@@ -201,9 +200,14 @@ class DefaultProviderRegistry implements ProviderRegistry {
     throw error;
   };
 
-  registerWindowElementInspector = (value: ElementInspectionProviderInterface) => {
+  registerWindowElementInspector = (
+    value: ElementInspectionProviderInterface,
+  ) => {
     this._windowElementInspector = value;
-    this.getLogProvider().trace("Registered new WindowElementInspector provider", value);
+    this.getLogProvider().trace(
+      "Registered new WindowElementInspector provider",
+      value,
+    );
   };
 
   hasImageReader(): boolean {
@@ -307,23 +311,24 @@ providerRegistry.registerLogProvider(new NoopLogProvider());
 
 if (!process.env[DISABLE_DEFAULT_PROVIDERS_ENV_VAR]) {
   if (!process.env[DISABLE_DEFAULT_CLIPBOARD_PROVIDER_ENV_VAR]) {
-    const Clipboard = require("@nut-tree/default-clipboard-provider").default;
+    const Clipboard =
+      require("@nut-tree-macpad/default-clipboard-provider").default;
     providerRegistry.registerClipboardProvider(new Clipboard());
   }
   if (!process.env[DISABLE_DEFAULT_KEYBOARD_PROVIDER_ENV_VAR]) {
-    const { DefaultKeyboardAction } = require("@nut-tree/libnut");
+    const { DefaultKeyboardAction } = require("@nut-tree-macpad/libnut");
     providerRegistry.registerKeyboardProvider(new DefaultKeyboardAction());
   }
   if (!process.env[DISABLE_DEFAULT_MOUSE_PROVIDER_ENV_VAR]) {
-    const { DefaultMouseAction } = require("@nut-tree/libnut");
+    const { DefaultMouseAction } = require("@nut-tree-macpad/libnut");
     providerRegistry.registerMouseProvider(new DefaultMouseAction());
   }
   if (!process.env[DISABLE_DEFAULT_SCREEN_PROVIDER_ENV_VAR]) {
-    const { DefaultScreenAction } = require("@nut-tree/libnut");
+    const { DefaultScreenAction } = require("@nut-tree-macpad/libnut");
     providerRegistry.registerScreenProvider(new DefaultScreenAction());
   }
   if (!process.env[DISABLE_DEFAULT_WINDOW_PROVIDER_ENV_VAR]) {
-    const { DefaultWindowAction } = require("@nut-tree/libnut");
+    const { DefaultWindowAction } = require("@nut-tree-macpad/libnut");
     providerRegistry.registerWindowProvider(new DefaultWindowAction());
   }
 }

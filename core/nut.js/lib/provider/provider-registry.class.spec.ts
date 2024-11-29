@@ -7,8 +7,8 @@ import {
   KeyboardProviderInterface,
   MouseProviderInterface,
   ScreenProviderInterface,
-  WindowProviderInterface
-} from "@nut-tree/provider-interfaces";
+  WindowProviderInterface,
+} from "@nut-tree-macpad/provider-interfaces";
 
 describe("DefaultProviderRegistry", () => {
   describe("non-defaults", () => {
@@ -19,7 +19,7 @@ describe("DefaultProviderRegistry", () => {
 
       // THEN
       expect(providerRegistry.getImageFinder).toThrowError(
-        /.*Error: No ImageFinder registered/
+        /.*Error: No ImageFinder registered/,
       );
     });
 
@@ -30,7 +30,7 @@ describe("DefaultProviderRegistry", () => {
 
       // THEN
       expect(providerRegistry.getTextFinder).toThrowError(
-        /.*Error: No TextFinder registered/
+        /.*Error: No TextFinder registered/,
       );
     });
 
@@ -41,7 +41,7 @@ describe("DefaultProviderRegistry", () => {
 
       // THEN
       expect(providerRegistry.getWindowFinder).toThrowError(
-        /.*Error: No WindowFinder registered/
+        /.*Error: No WindowFinder registered/,
       );
     });
   });
@@ -126,7 +126,7 @@ describe("DefaultProviderRegistry", () => {
 
       // WHEN
       providerRegistry.registerImageProcessor(
-        undefined as unknown as ImageProcessor
+        undefined as unknown as ImageProcessor,
       );
 
       // THEN
@@ -155,7 +155,7 @@ describe("DefaultProviderRegistry", () => {
 
       // WHEN
       providerRegistry.registerClipboardProvider(
-        undefined as unknown as ClipboardProviderInterface
+        undefined as unknown as ClipboardProviderInterface,
       );
 
       // THEN
@@ -166,7 +166,7 @@ describe("DefaultProviderRegistry", () => {
 
       // WHEN
       providerRegistry.registerKeyboardProvider(
-        undefined as unknown as KeyboardProviderInterface
+        undefined as unknown as KeyboardProviderInterface,
       );
 
       // THEN
@@ -177,7 +177,7 @@ describe("DefaultProviderRegistry", () => {
 
       // WHEN
       providerRegistry.registerMouseProvider(
-        undefined as unknown as MouseProviderInterface
+        undefined as unknown as MouseProviderInterface,
       );
 
       // THEN
@@ -188,7 +188,7 @@ describe("DefaultProviderRegistry", () => {
 
       // WHEN
       providerRegistry.registerScreenProvider(
-        undefined as unknown as ScreenProviderInterface
+        undefined as unknown as ScreenProviderInterface,
       );
 
       // THEN
@@ -199,7 +199,7 @@ describe("DefaultProviderRegistry", () => {
 
       // WHEN
       providerRegistry.registerWindowProvider(
-        undefined as unknown as WindowProviderInterface
+        undefined as unknown as WindowProviderInterface,
       );
 
       // THEN

@@ -1,9 +1,9 @@
 import { WindowApi } from "./window-api.interface";
 import { Window } from "./window.class";
-import { ProviderRegistry } from "@nut-tree/provider-interfaces";
+import { ProviderRegistry } from "@nut-tree-macpad/provider-interfaces";
 
 export const createWindowApi = (
-  providerRegistry: ProviderRegistry
+  providerRegistry: ProviderRegistry,
 ): WindowApi => {
   return {
     async getActiveWindow(): Promise<Window> {

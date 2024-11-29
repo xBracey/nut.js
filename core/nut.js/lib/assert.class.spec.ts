@@ -1,5 +1,5 @@
 import { AssertClass } from "./assert.class";
-import { Region } from "@nut-tree/shared";
+import { Region } from "@nut-tree-macpad/shared";
 import { ScreenClass } from "./screen.class";
 import providerRegistry from "./provider/provider-registry.class";
 import { Image } from "../index";
@@ -13,12 +13,12 @@ describe("Assert", () => {
   it("isVisible should not throw if a match is found.", async () => {
     // GIVEN
     ScreenClass.prototype.find = jest.fn(() =>
-      Promise.resolve(new Region(0, 0, 100, 100))
+      Promise.resolve(new Region(0, 0, 100, 100)),
     ) as any;
     const screenMock = new ScreenClass(providerRegistry);
     const SUT = new AssertClass(screenMock);
     const needle = mockPartial<Image>({
-      id: needleId
+      id: needleId,
     });
 
     // WHEN
@@ -33,14 +33,14 @@ describe("Assert", () => {
     const screenMock = new ScreenClass(providerRegistry);
     const SUT = new AssertClass(screenMock);
     const needle = mockPartial<Image>({
-      id: needleId
+      id: needleId,
     });
 
     // WHEN
 
     // THEN
     await expect(SUT.isVisible(needle)).rejects.toThrowError(
-      `Element '${needle.id}' not found`
+      `Element '${needle.id}' not found`,
     );
   });
 
@@ -51,33 +51,33 @@ describe("Assert", () => {
     const SUT = new AssertClass(screenMock);
     const searchRegion = new Region(10, 10, 10, 10);
     const needle = mockPartial<Image>({
-      id: needleId
+      id: needleId,
     });
 
     // WHEN
 
     // THEN
     await expect(SUT.isVisible(needle, searchRegion)).rejects.toThrowError(
-      `Element '${needle.id}' not found in region ${searchRegion.toString()}`
+      `Element '${needle.id}' not found in region ${searchRegion.toString()}`,
     );
   });
 
   it("isNotVisible should throw if a match is found.", async () => {
     // GIVEN
     ScreenClass.prototype.find = jest.fn(() =>
-      Promise.resolve(new Region(0, 0, 100, 100))
+      Promise.resolve(new Region(0, 0, 100, 100)),
     ) as any;
     const screenMock = new ScreenClass(providerRegistry);
     const SUT = new AssertClass(screenMock);
     const needle = mockPartial<Image>({
-      id: needleId
+      id: needleId,
     });
 
     // WHEN
 
     // THEN
     await expect(SUT.notVisible(needle)).rejects.toThrowError(
-      `'${needle.id}' is visible`
+      `'${needle.id}' is visible`,
     );
   });
 
@@ -87,7 +87,7 @@ describe("Assert", () => {
     const screenMock = new ScreenClass(providerRegistry);
     const SUT = new AssertClass(screenMock);
     const needle = mockPartial<Image>({
-      id: needleId
+      id: needleId,
     });
 
     // WHEN

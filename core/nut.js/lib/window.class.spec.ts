@@ -4,10 +4,16 @@ import {
   LogProviderInterface,
   ProviderRegistry,
   ScreenProviderInterface,
-  WindowProviderInterface
-} from "@nut-tree/provider-interfaces";
+  WindowProviderInterface,
+} from "@nut-tree-macpad/provider-interfaces";
 import { mockPartial } from "sneer";
-import { Region, RGBA, WindowElement, WindowElementDescription, WindowElementQuery } from "@nut-tree/shared";
+import {
+  Region,
+  RGBA,
+  WindowElement,
+  WindowElementDescription,
+  WindowElementQuery,
+} from "@nut-tree-macpad/shared";
 import { pixelWithColor } from "../index";
 import { NoopLogProvider } from "./provider/log/noop-log-provider.class";
 
@@ -21,16 +27,16 @@ describe("Window class", () => {
     const providerRegistryMock = mockPartial<ProviderRegistry>({
       getWindow(): WindowProviderInterface {
         return mockPartial<WindowProviderInterface>({
-          getWindowRegion: windowMock
+          getWindowRegion: windowMock,
         });
       },
       getScreen(): ScreenProviderInterface {
         return mockPartial<ScreenProviderInterface>({
           screenSize(): Promise<Region> {
             return Promise.resolve(new Region(0, 0, 1920, 1080));
-          }
+          },
         });
-      }
+      },
     });
     const mockWindowHandle = 123;
     const SUT = new Window(providerRegistryMock, mockWindowHandle);
@@ -49,9 +55,9 @@ describe("Window class", () => {
     const providerRegistryMock = mockPartial<ProviderRegistry>({
       getWindow(): WindowProviderInterface {
         return mockPartial<WindowProviderInterface>({
-          getWindowTitle: windowMock
+          getWindowTitle: windowMock,
         });
-      }
+      },
     });
     const mockWindowHandle = 123;
     const SUT = new Window(providerRegistryMock, mockWindowHandle);
@@ -71,9 +77,9 @@ describe("Window class", () => {
       const providerRegistryMock = mockPartial<ProviderRegistry>({
         getWindowElementInspector(): ElementInspectionProviderInterface {
           return mockPartial<ElementInspectionProviderInterface>({
-            getElements: elementInspectorMock
+            getElements: elementInspectorMock,
           });
-        }
+        },
       });
       const mockWindowHandle = 123;
       const maxElements = 1000;
@@ -84,7 +90,10 @@ describe("Window class", () => {
 
       // THEN
       expect(elementInspectorMock).toHaveBeenCalledTimes(1);
-      expect(elementInspectorMock).toHaveBeenCalledWith(mockWindowHandle, maxElements);
+      expect(elementInspectorMock).toHaveBeenCalledWith(
+        mockWindowHandle,
+        maxElements,
+      );
     });
 
     it("should search for window elements via provider", async () => {
@@ -94,24 +103,24 @@ describe("Window class", () => {
         getWindowElementInspector(): ElementInspectionProviderInterface {
           return mockPartial<ElementInspectionProviderInterface>({
             findElement: elementInspectorMock,
-            findElements: elementInspectorMock
+            findElements: elementInspectorMock,
           });
         },
         getLogProvider(): LogProviderInterface {
           return new NoopLogProvider();
-        }
+        },
       });
       const mockWindowHandle = 123;
       const description: WindowElementDescription = {
         type: "test",
-        id: "foo"
+        id: "foo",
       };
       const query: WindowElementQuery = {
         id: "test",
         type: "window-element",
         by: {
-          description
-        }
+          description,
+        },
       };
       const SUT = new Window(providerRegistryMock, mockWindowHandle);
 
@@ -120,7 +129,10 @@ describe("Window class", () => {
 
       // THEN
       expect(elementInspectorMock).toHaveBeenCalledTimes(1);
-      expect(elementInspectorMock).toHaveBeenCalledWith(mockWindowHandle, description);
+      expect(elementInspectorMock).toHaveBeenCalledWith(
+        mockWindowHandle,
+        description,
+      );
     });
 
     it("should search for multiple elements via provider", async () => {
@@ -130,24 +142,24 @@ describe("Window class", () => {
         getWindowElementInspector(): ElementInspectionProviderInterface {
           return mockPartial<ElementInspectionProviderInterface>({
             findElement: elementInspectorMock,
-            findElements: elementInspectorMock
+            findElements: elementInspectorMock,
           });
         },
         getLogProvider(): LogProviderInterface {
           return new NoopLogProvider();
-        }
+        },
       });
       const mockWindowHandle = 123;
       const description: WindowElementDescription = {
         type: "test",
-        id: "foo"
+        id: "foo",
       };
       const query: WindowElementQuery = {
         id: "test",
         type: "window-element",
         by: {
-          description
-        }
+          description,
+        },
       };
       const SUT = new Window(providerRegistryMock, mockWindowHandle);
 
@@ -156,7 +168,10 @@ describe("Window class", () => {
 
       // THEN
       expect(elementInspectorMock).toHaveBeenCalledTimes(1);
-      expect(elementInspectorMock).toHaveBeenCalledWith(mockWindowHandle, description);
+      expect(elementInspectorMock).toHaveBeenCalledWith(
+        mockWindowHandle,
+        description,
+      );
     });
 
     describe("invalid input", () => {
@@ -167,12 +182,12 @@ describe("Window class", () => {
           getWindowElementInspector(): ElementInspectionProviderInterface {
             return mockPartial<ElementInspectionProviderInterface>({
               findElement: elementInspectorMock,
-              findElements: elementInspectorMock
+              findElements: elementInspectorMock,
             });
           },
           getLogProvider(): LogProviderInterface {
             return new NoopLogProvider();
-          }
+          },
         });
         const mockWindowHandle = 123;
         const description = new RGBA(255, 0, 255, 255);
@@ -182,7 +197,9 @@ describe("Window class", () => {
         const test = () => SUT.find(pixelWithColor(description) as any);
 
         // THEN
-        await expect(test).rejects.toThrowError(/.*'Error: Search input is not supported. Please use a valid search input type.'$/);
+        await expect(test).rejects.toThrowError(
+          /.*'Error: Search input is not supported. Please use a valid search input type.'$/,
+        );
       });
 
       it("should throw on invalid input to findAll", async () => {
@@ -192,12 +209,12 @@ describe("Window class", () => {
           getWindowElementInspector(): ElementInspectionProviderInterface {
             return mockPartial<ElementInspectionProviderInterface>({
               findElement: elementInspectorMock,
-              findElements: elementInspectorMock
+              findElements: elementInspectorMock,
             });
           },
           getLogProvider(): LogProviderInterface {
             return new NoopLogProvider();
-          }
+          },
         });
         const mockWindowHandle = 123;
         const description = new RGBA(255, 0, 255, 255);
@@ -207,7 +224,9 @@ describe("Window class", () => {
         const test = () => SUT.findAll(pixelWithColor(description) as any);
 
         // THEN
-        await expect(test).rejects.toThrowError(/.*'Error: Search input is not supported. Please use a valid search input type.'$/);
+        await expect(test).rejects.toThrowError(
+          /.*'Error: Search input is not supported. Please use a valid search input type.'$/,
+        );
       });
 
       it("should throw on invalid input to waitFor", async () => {
@@ -217,22 +236,25 @@ describe("Window class", () => {
           getWindowElementInspector(): ElementInspectionProviderInterface {
             return mockPartial<ElementInspectionProviderInterface>({
               findElement: elementInspectorMock,
-              findElements: elementInspectorMock
+              findElements: elementInspectorMock,
             });
           },
           getLogProvider(): LogProviderInterface {
             return new NoopLogProvider();
-          }
+          },
         });
         const mockWindowHandle = 123;
         const description = new RGBA(255, 0, 255, 255);
         const SUT = new Window(providerRegistryMock, mockWindowHandle);
 
         // WHEN
-        const test = () => SUT.waitFor(pixelWithColor(description) as any, 100, 50);
+        const test = () =>
+          SUT.waitFor(pixelWithColor(description) as any, 100, 50);
 
         // THEN
-        await expect(test).rejects.toMatch(/.*'Error: Search input is not supported.*$/);
+        await expect(test).rejects.toMatch(
+          /.*'Error: Search input is not supported.*$/,
+        );
       });
     });
 
@@ -242,29 +264,31 @@ describe("Window class", () => {
         const windowElementType = { type: "testElement" };
         const windowElement = mockPartial<WindowElement>(windowElementType);
         const hookMock = jest.fn();
-        const elementInspectorMock = jest.fn(() => Promise.resolve(windowElement));
+        const elementInspectorMock = jest.fn(() =>
+          Promise.resolve(windowElement),
+        );
         const secondHookMock = jest.fn();
         const providerRegistryMock = mockPartial<ProviderRegistry>({
           getWindowElementInspector(): ElementInspectionProviderInterface {
             return mockPartial<ElementInspectionProviderInterface>({
-              findElement: elementInspectorMock
+              findElement: elementInspectorMock,
             });
           },
           getLogProvider(): LogProviderInterface {
             return new NoopLogProvider();
-          }
+          },
         });
         const mockWindowHandle = 123;
         const description: WindowElementDescription = {
           type: "test",
-          id: "foo"
+          id: "foo",
         };
         const query: WindowElementQuery = {
           id: "test",
           type: "window-element",
           by: {
-            description
-          }
+            description,
+          },
         };
         const SUT = new Window(providerRegistryMock, mockWindowHandle);
         SUT.on(query, hookMock);
@@ -275,7 +299,10 @@ describe("Window class", () => {
 
         // THEN
         expect(elementInspectorMock).toHaveBeenCalledTimes(1);
-        expect(elementInspectorMock).toHaveBeenCalledWith(mockWindowHandle, description);
+        expect(elementInspectorMock).toHaveBeenCalledWith(
+          mockWindowHandle,
+          description,
+        );
         expect(hookMock).toHaveBeenCalledTimes(1);
         expect(hookMock).toHaveBeenCalledWith(windowElement);
         expect(secondHookMock).toHaveBeenCalledTimes(1);
@@ -290,29 +317,31 @@ describe("Window class", () => {
         const secondElement = mockPartial<WindowElement>(secondElementType);
         const mockMatches = [windowElement, secondElement];
         const hookMock = jest.fn();
-        const elementInspectorMock = jest.fn(() => Promise.resolve(mockMatches));
+        const elementInspectorMock = jest.fn(() =>
+          Promise.resolve(mockMatches),
+        );
         const secondHookMock = jest.fn();
         const providerRegistryMock = mockPartial<ProviderRegistry>({
           getWindowElementInspector(): ElementInspectionProviderInterface {
             return mockPartial<ElementInspectionProviderInterface>({
-              findElements: elementInspectorMock
+              findElements: elementInspectorMock,
             });
           },
           getLogProvider(): LogProviderInterface {
             return new NoopLogProvider();
-          }
+          },
         });
         const mockWindowHandle = 123;
         const description: WindowElementDescription = {
           type: "test",
-          id: "foo"
+          id: "foo",
         };
         const query: WindowElementQuery = {
           id: "test",
           type: "window-element",
           by: {
-            description
-          }
+            description,
+          },
         };
         const SUT = new Window(providerRegistryMock, mockWindowHandle);
         SUT.on(query, hookMock);
@@ -323,7 +352,10 @@ describe("Window class", () => {
 
         // THEN
         expect(elementInspectorMock).toHaveBeenCalledTimes(1);
-        expect(elementInspectorMock).toHaveBeenCalledWith(mockWindowHandle, description);
+        expect(elementInspectorMock).toHaveBeenCalledWith(
+          mockWindowHandle,
+          description,
+        );
         expect(hookMock).toHaveBeenCalledTimes(mockMatches.length);
         expect(hookMock).toHaveBeenCalledWith(windowElement);
         expect(hookMock).toHaveBeenCalledWith(secondElement);

@@ -1,6 +1,6 @@
 import Jimp from "jimp";
-import { ImageReader } from "@nut-tree/provider-interfaces";
-import { ColorMode, Image } from "@nut-tree/shared";
+import { ImageReader } from "@nut-tree-macpad/provider-interfaces";
+import { ColorMode, Image } from "@nut-tree-macpad/shared";
 
 export default class implements ImageReader {
   load(parameters: string): Promise<Image> {
@@ -13,11 +13,11 @@ export default class implements ImageReader {
             0,
             jimpImage.bitmap.width,
             jimpImage.bitmap.height,
-            function(_, __, idx) {
+            function (_, __, idx) {
               const red = this.bitmap.data[idx];
               this.bitmap.data[idx] = this.bitmap.data[idx + 2];
               this.bitmap.data[idx + 2] = red;
-            }
+            },
           );
           resolve(
             new Image(
@@ -27,14 +27,14 @@ export default class implements ImageReader {
               4,
               parameters,
               jimpImage.bitmap.data.length /
-              (jimpImage.bitmap.width * jimpImage.bitmap.height),
+                (jimpImage.bitmap.width * jimpImage.bitmap.height),
               jimpImage.bitmap.data.length / jimpImage.bitmap.height,
-              ColorMode.BGR
-            )
+              ColorMode.BGR,
+            ),
           );
         })
         .catch((err) =>
-          reject(`Failed to load image from '${parameters}'. Reason: ${err}`)
+          reject(`Failed to load image from '${parameters}'. Reason: ${err}`),
         );
     });
   }

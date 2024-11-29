@@ -1,4 +1,10 @@
-import { FindInput, OptionalSearchParameters, Point, Region, RGBA } from "@nut-tree/shared";
+import {
+  FindInput,
+  OptionalSearchParameters,
+  Point,
+  Region,
+  RGBA,
+} from "@nut-tree-macpad/shared";
 import { toBeAt } from "./matchers/toBeAt.function";
 import { toBeIn } from "./matchers/toBeIn.function";
 import { toShow } from "./matchers/toShow.function";
@@ -12,7 +18,7 @@ declare global {
       // @ts-ignore
       toShow: <PROVIDER_DATA>(
         needle: FindInput,
-        parameters?: OptionalSearchParameters<PROVIDER_DATA>
+        parameters?: OptionalSearchParameters<PROVIDER_DATA>,
       ) => ReturnType<typeof toShow>;
       toHaveColor: (color: RGBA) => ReturnType<typeof toHaveColor>;
     }
@@ -23,5 +29,5 @@ export const jestMatchers = {
   toBeAt,
   toBeIn,
   toShow,
-  toHaveColor
+  toHaveColor,
 };

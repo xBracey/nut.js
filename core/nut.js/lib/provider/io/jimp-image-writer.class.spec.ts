@@ -1,5 +1,5 @@
 import ImageWriter from "./jimp-image-writer.class";
-import { Image } from "@nut-tree/shared";
+import { Image } from "@nut-tree-macpad/shared";
 import Jimp from "jimp";
 
 jest.mock("jimp", () => {
@@ -7,7 +7,7 @@ jest.mock("jimp", () => {
     bitmap = {
       width: 100,
       height: 100,
-      data: Buffer.from([])
+      data: Buffer.from([]),
     };
     hasAlpha = () => false;
     static read = jest.fn(() => Promise.resolve(new JimpMock()));
@@ -15,7 +15,7 @@ jest.mock("jimp", () => {
 
   return {
     __esModule: true,
-    default: JimpMock
+    default: JimpMock,
   };
 });
 
@@ -32,7 +32,7 @@ describe("Jimp image writer", () => {
       3,
       outputFileName,
       4,
-      100 * 4
+      100 * 4,
     );
     const writeMock = jest.fn(() => Promise.resolve(new Jimp()));
     const scanMock = jest.fn();
@@ -59,7 +59,7 @@ describe("Jimp image writer", () => {
       3,
       outputFileName,
       4,
-      100 * 4
+      100 * 4,
     );
     const writeMock = jest.fn(() => Promise.reject("write error"));
     Jimp.prototype.scan = jest.fn();

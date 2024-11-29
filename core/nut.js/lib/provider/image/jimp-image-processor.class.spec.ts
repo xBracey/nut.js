@@ -1,4 +1,4 @@
-import { Image, Point } from "@nut-tree/shared";
+import { Image, Point } from "@nut-tree-macpad/shared";
 import JimpImageProcessor from "./jimp-image-processor.class";
 
 const imageWidth = 10;
@@ -16,7 +16,7 @@ describe("JimpImageProcessor", () => {
         3,
         "input_image",
         4,
-        4
+        4,
       );
       const SUT = new JimpImageProcessor();
 
@@ -25,9 +25,9 @@ describe("JimpImageProcessor", () => {
 
       // THEN
       await expect(result).rejects.toThrowError(
-        `Query location out of bounds. Should be in range 0 <= x < image.width, is ${outOfBoundsPoint.x}`
+        `Query location out of bounds. Should be in range 0 <= x < image.width, is ${outOfBoundsPoint.x}`,
       );
-    }
+    },
   );
 
   it.each([[new Point(5, -1)], [new Point(5, imageHeight + 10)]])(
@@ -43,7 +43,7 @@ describe("JimpImageProcessor", () => {
         3,
         "input_image",
         4,
-        4
+        4,
       );
       const SUT = new JimpImageProcessor();
 
@@ -52,8 +52,8 @@ describe("JimpImageProcessor", () => {
 
       // THEN
       await expect(result).rejects.toThrowError(
-        `Query location out of bounds. Should be in range 0 <= y < image.height, is ${outOfBoundsPoint.y}`
+        `Query location out of bounds. Should be in range 0 <= y < image.height, is ${outOfBoundsPoint.y}`,
       );
-    }
+    },
   );
 });

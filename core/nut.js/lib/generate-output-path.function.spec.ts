@@ -1,6 +1,6 @@
 import { join } from "path";
 import { cwd } from "process";
-import { FileType } from "@nut-tree/shared";
+import { FileType } from "@nut-tree-macpad/shared";
 import { generateOutputPath } from "./generate-output-path.function";
 
 describe("generate-output-path", () => {
@@ -56,7 +56,7 @@ describe("generate-output-path", () => {
     // WHEN
     const result = generateOutputPath(filename, {
       postfix: post,
-      prefix: pre
+      prefix: pre,
     });
 
     // THEN
@@ -72,7 +72,7 @@ describe("generate-output-path", () => {
 
     // WHEN
     const result = generateOutputPath(filename, {
-      path: filepath
+      path: filepath,
     });
 
     // THEN
@@ -88,7 +88,7 @@ describe("generate-output-path", () => {
 
     // WHEN
     const result = generateOutputPath(filename, {
-      path: filepath
+      path: filepath,
     });
 
     // THEN
@@ -103,7 +103,7 @@ describe("generate-output-path", () => {
 
     // WHEN
     const result = generateOutputPath(filename, {
-      type: FileType.JPG
+      type: FileType.JPG,
     });
 
     // THEN

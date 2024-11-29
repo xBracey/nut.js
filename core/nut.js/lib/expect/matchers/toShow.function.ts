@@ -1,11 +1,16 @@
 import { ScreenClass } from "../../screen.class";
-import { FindInput, isRegion, OptionalSearchParameters, Region } from "@nut-tree/shared";
+import {
+  FindInput,
+  isRegion,
+  OptionalSearchParameters,
+  Region,
+} from "@nut-tree-macpad/shared";
 import { screen } from "../../../index";
 
 export const toShow = async <PROVIDER_DATA>(
   received: ScreenClass | Region,
   needle: FindInput,
-  parameters?: OptionalSearchParameters<PROVIDER_DATA>
+  parameters?: OptionalSearchParameters<PROVIDER_DATA>,
 ) => {
   const identifier = (await needle).id;
   if (isRegion(received)) {
@@ -18,12 +23,12 @@ export const toShow = async <PROVIDER_DATA>(
       await screen.find(needle, parameters);
       return {
         message: () => `Expected screen to not show ${identifier}`,
-        pass: true
+        pass: true,
       };
     } catch (err) {
       return {
         message: () => `Screen is not showing ${identifier}: ${err}`,
-        pass: false
+        pass: false,
       };
     }
   } else {
@@ -31,12 +36,12 @@ export const toShow = async <PROVIDER_DATA>(
       await received.find(needle, parameters);
       return {
         message: () => `Expected screen to not show ${identifier}`,
-        pass: true
+        pass: true,
       };
     } catch (err) {
       return {
         message: () => `Screen is not showing ${identifier}: ${err}`,
-        pass: false
+        pass: false,
       };
     }
   }

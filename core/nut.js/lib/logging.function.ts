@@ -1,8 +1,8 @@
-import { LogProviderInterface } from "@nut-tree/provider-interfaces";
+import { LogProviderInterface } from "@nut-tree-macpad/provider-interfaces";
 import {
   ConsoleLogLevel,
   ConsoleLogProvider,
-  ConsoleLogProviderConfig
+  ConsoleLogProviderConfig,
 } from "./provider/log/console-log-provider.class";
 import providerRegistry from "./provider/provider-registry.class";
 

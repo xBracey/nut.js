@@ -1,4 +1,9 @@
-import { MatchRequest, MatchResult, Region, TextQuery } from "@nut-tree/shared";
+import {
+  MatchRequest,
+  MatchResult,
+  Region,
+  TextQuery,
+} from "@nut-tree-macpad/shared";
 
 /**
  * A TextFinder should provide an abstraction layer to perform text searches

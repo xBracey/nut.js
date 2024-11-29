@@ -1,7 +1,11 @@
-import { Key } from "@nut-tree/shared";
+import { Key } from "@nut-tree-macpad/shared";
 import { KeyboardClass } from "./keyboard.class";
 import { mockPartial } from "sneer";
-import { KeyboardProviderInterface, LogProviderInterface, ProviderRegistry } from "@nut-tree/provider-interfaces";
+import {
+  KeyboardProviderInterface,
+  LogProviderInterface,
+  ProviderRegistry,
+} from "@nut-tree-macpad/provider-interfaces";
 import { NoopLogProvider } from "./provider/log/noop-log-provider.class";
 
 jest.setTimeout(10000);
@@ -45,7 +49,7 @@ describe("Keyboard", () => {
       mockPartial<KeyboardProviderInterface>({
         setKeyboardDelay: jest.fn(),
         type: typeMock,
-      })
+      }),
     );
 
     // WHEN
@@ -68,7 +72,7 @@ describe("Keyboard", () => {
       mockPartial<KeyboardProviderInterface>({
         setKeyboardDelay: jest.fn(),
         type: typeMock,
-      })
+      }),
     );
 
     // WHEN
@@ -91,7 +95,7 @@ describe("Keyboard", () => {
       mockPartial<KeyboardProviderInterface>({
         setKeyboardDelay: jest.fn(),
         click: clickMock,
-      })
+      }),
     );
 
     // WHEN
@@ -112,7 +116,7 @@ describe("Keyboard", () => {
       mockPartial<KeyboardProviderInterface>({
         setKeyboardDelay: jest.fn(),
         click: clickMock,
-      })
+      }),
     );
 
     // WHEN
@@ -134,7 +138,7 @@ describe("Keyboard", () => {
       mockPartial<KeyboardProviderInterface>({
         setKeyboardDelay: jest.fn(),
         pressKey: keyMock,
-      })
+      }),
     );
 
     // WHEN
@@ -156,7 +160,7 @@ describe("Keyboard", () => {
       mockPartial<KeyboardProviderInterface>({
         setKeyboardDelay: jest.fn(),
         releaseKey: keyMock,
-      })
+      }),
     );
 
     // WHEN
@@ -180,7 +184,7 @@ describe("Keyboard", () => {
         mockPartial<KeyboardProviderInterface>({
           setKeyboardDelay: jest.fn(),
           pressKey: keyMock,
-        })
+        }),
       );
 
       // WHEN
@@ -203,7 +207,7 @@ describe("Keyboard", () => {
         mockPartial<KeyboardProviderInterface>({
           setKeyboardDelay: jest.fn(),
           releaseKey: keyMock,
-        })
+        }),
       );
 
       // WHEN

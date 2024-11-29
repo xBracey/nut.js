@@ -1,4 +1,4 @@
-import { Key } from "@nut-tree/shared";
+import { Key } from "@nut-tree-macpad/shared";
 
 /**
  * A KeyboardActionProvider should provide access to a systems keyboard
@@ -38,4 +38,9 @@ export interface KeyboardProviderInterface {
    * @param keys Array of {@link Key}s to release
    */
   releaseKey(...keys: Key[]): Promise<void>;
+
+  /**
+   * Move space left or right
+   */
+  moveSpace(isLeft: boolean): Promise<void>;
 }

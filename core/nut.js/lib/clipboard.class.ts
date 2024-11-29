@@ -1,15 +1,14 @@
 /**
  * {@link ClipboardClass} class gives access to a systems clipboard
  */
-import { ProviderRegistry } from "@nut-tree/provider-interfaces";
+import { ProviderRegistry } from "@nut-tree-macpad/provider-interfaces";
 
 export class ClipboardClass {
   /**
    * {@link ClipboardClass} class constructor
    * @param providerRegistry
    */
-  constructor(private providerRegistry: ProviderRegistry) {
-  }
+  constructor(private providerRegistry: ProviderRegistry) {}
 
   /**
    * {@link setContent} copies a given text to the system clipboard

@@ -1,7 +1,7 @@
 "use strict";
 
-const { screen, Region, imageResource } = require("@nut-tree/nut-js");
-require("@nut-tree/nl-matcher");
+const { screen, Region, imageResource } = require("@nut-tree-macpad/nut-js");
+require("@nut-tree-macpad/nl-matcher");
 
 describe("Screen test", () => {
   describe("dimensions", () => {
@@ -25,7 +25,9 @@ describe("Screen test", () => {
       jest.setTimeout(10000);
       screen.config.resourceDirectory = "../assets";
 
-      console.log(await screen.find(imageResource("mouse.png"), { confidence: 0.9 }));
+      console.log(
+        await screen.find(imageResource("mouse.png"), { confidence: 0.9 })
+      );
     });
 
     it("should report region with highest match when no match with sufficient confidence is found", async () => {
@@ -45,7 +47,9 @@ describe("Screen test", () => {
       jest.setTimeout(10000);
       screen.config.resourceDirectory = "../assets";
 
-      await screen.waitFor(imageResource("mouse.png"), 2500, 500, { confidence: 0.9 });
+      await screen.waitFor(imageResource("mouse.png"), 2500, 500, {
+        confidence: 0.9,
+      });
     });
   });
 
@@ -55,7 +59,9 @@ describe("Screen test", () => {
       screen.config.confidence = 0.1;
 
       const needle = await imageResource("mouse.png");
-      screen.on(needle, target => console.log(`Match found! ${JSON.stringify(target)}`));
+      screen.on(needle, (target) =>
+        console.log(`Match found! ${JSON.stringify(target)}`)
+      );
       await screen.find(needle, { confidence: 0.9 });
     });
   });

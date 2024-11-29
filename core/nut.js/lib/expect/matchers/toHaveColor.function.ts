@@ -1,5 +1,5 @@
 import { screen } from "../../../index";
-import { Point, RGBA } from "@nut-tree/shared";
+import { Point, RGBA } from "@nut-tree-macpad/shared";
 
 export const toHaveColor = async (received: Point, needle: RGBA) => {
   const color = await screen.colorAt(received);
@@ -8,13 +8,13 @@ export const toHaveColor = async (received: Point, needle: RGBA) => {
     return {
       message: () =>
         `Expected pixel ${received.toString()} not to to have color ${needle.toHex()}`,
-      pass: true
+      pass: true,
     };
   } else {
     return {
       message: () =>
         `Expected pixel ${received.toString()} to have color ${needle.toHex()} but is ${color.toHex()}`,
-      pass: false
+      pass: false,
     };
   }
 };

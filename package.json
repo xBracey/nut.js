@@ -1,5 +1,5 @@
 {
-  "name": "@nut-tree/monorepo",
+  "name": "@nut-tree-macpad/monorepo",
   "version": "4.2.0",
   "private": true,
   "scripts": {

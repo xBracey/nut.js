@@ -13,8 +13,8 @@ import {
   LineQuery,
   RGBA,
   WindowQuery,
-  WordQuery
-} from "@nut-tree/shared";
+  WordQuery,
+} from "@nut-tree-macpad/shared";
 
 export {
   AssertClass,
@@ -25,13 +25,13 @@ export {
   MouseConfig,
   ScreenClass,
   ScreenConfig,
-  providerRegistry
+  providerRegistry,
 };
 
-export { MatchRequest } from "@nut-tree/shared";
-export { MatchResult } from "@nut-tree/shared";
-export * from "@nut-tree/provider-interfaces";
-export * from "@nut-tree/shared";
+export { MatchRequest } from "@nut-tree-macpad/shared";
+export { MatchResult } from "@nut-tree-macpad/shared";
+export * from "@nut-tree-macpad/provider-interfaces";
+export * from "@nut-tree-macpad/shared";
 
 export { jestMatchers } from "./lib/expect/jest.matcher.function";
 export { sleep } from "./lib/sleep.function";
@@ -41,7 +41,7 @@ export { Window } from "./lib/window.class";
 export {
   useLogger,
   useConsoleLogger,
-  ConsoleLogLevel
+  ConsoleLogLevel,
 } from "./lib/logging.function";
 
 const lineHelper = new LineHelper();
@@ -54,7 +54,7 @@ const assert = new AssertClass(screen);
 
 const { straightTo, up, down, left, right } = createMovementApi(
   providerRegistry,
-  lineHelper
+  lineHelper,
 );
 const { getWindows, getActiveWindow } = createWindowApi(providerRegistry);
 
@@ -65,7 +65,7 @@ const imageResource = (fileName: string) =>
   loadImageResource(
     providerRegistry,
     screen.config.resourceDirectory,
-    fileName
+    fileName,
   );
 
 const singleWord = (word: string): WordQuery => {
@@ -73,8 +73,8 @@ const singleWord = (word: string): WordQuery => {
     type: "text",
     id: `word-query-${word}`,
     by: {
-      word
-    }
+      word,
+    },
   };
 };
 const textLine = (line: string): LineQuery => {
@@ -82,8 +82,8 @@ const textLine = (line: string): LineQuery => {
     type: "text",
     id: `line-query-${line}`,
     by: {
-      line
-    }
+      line,
+    },
   };
 };
 
@@ -92,8 +92,8 @@ const windowWithTitle = (title: string | RegExp): WindowQuery => {
     type: "window",
     id: `window-by-title-query-${title}`,
     by: {
-      title
-    }
+      title,
+    },
   };
 };
 
@@ -102,8 +102,8 @@ const pixelWithColor = (color: RGBA): ColorQuery => {
     type: "color",
     id: `pixel-by-color-query-RGBA(${color.R},${color.G},${color.B},${color.A})`,
     by: {
-      color
-    }
+      color,
+    },
   };
 };
 
@@ -128,5 +128,5 @@ export {
   singleWord,
   textLine,
   windowWithTitle,
-  pixelWithColor
+  pixelWithColor,
 };

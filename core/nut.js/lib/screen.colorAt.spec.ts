@@ -1,7 +1,11 @@
 import { Image, loadImage, Point, Region, RGBA, ScreenClass } from "../index";
 import { mockPartial } from "sneer";
 import providerRegistry from "./provider/provider-registry.class";
-import { ImageProcessor, ProviderRegistry, ScreenProviderInterface } from "@nut-tree/provider-interfaces";
+import {
+  ImageProcessor,
+  ProviderRegistry,
+  ScreenProviderInterface,
+} from "@nut-tree-macpad/provider-interfaces";
 import { NoopLogProvider } from "./provider/log/noop-log-provider.class";
 
 const searchRegion = new Region(0, 0, 1000, 1000);
@@ -17,18 +21,18 @@ const providerRegistryMock = mockPartial<ProviderRegistry>({
             3,
             "needle_image",
             4,
-            searchRegion.width * 4
-          )
+            searchRegion.width * 4,
+          ),
         );
       },
       screenSize(): Promise<Region> {
         return Promise.resolve(searchRegion);
-      }
+      },
     });
   },
   getImageProcessor(): ImageProcessor {
     return providerRegistry.getImageProcessor();
-  }
+  },
 });
 
 describe("colorAt", () => {
@@ -38,8 +42,8 @@ describe("colorAt", () => {
     const grabScreenMock = jest.fn(() => Promise.resolve(screenshot));
     providerRegistryMock.getScreen = jest.fn(() =>
       mockPartial<ScreenProviderInterface>({
-        grabScreen: grabScreenMock
-      })
+        grabScreen: grabScreenMock,
+      }),
     );
     providerRegistryMock.getLogProvider = () => new NoopLogProvider();
     providerRegistryMock.getImageProcessor();
@@ -58,16 +62,14 @@ describe("colorAt", () => {
 
   it("should account for pixel density when retrieving pixel color", async () => {
     // GIVEN
-    const screenshot = await loadImage(
-      `${__dirname}/../assets/checkers.png`
-    );
+    const screenshot = await loadImage(`${__dirname}/../assets/checkers.png`);
     screenshot.pixelDensity.scaleX = 2.0;
     screenshot.pixelDensity.scaleY = 2.0;
     const grabScreenMock = jest.fn(() => Promise.resolve(screenshot));
     providerRegistryMock.getScreen = jest.fn(() =>
       mockPartial<ScreenProviderInterface>({
-        grabScreen: grabScreenMock
-      })
+        grabScreen: grabScreenMock,
+      }),
     );
     providerRegistryMock.getLogProvider = () => new NoopLogProvider();
     providerRegistryMock.getImageProcessor();
@@ -87,12 +89,12 @@ describe("colorAt", () => {
   it("should throw on non-Point arguments", async () => {
     // GIVEN
     const grabScreenMock = jest.fn(() =>
-      Promise.resolve(new Image(10, 10, Buffer.from([]), 4, "test", 4, 10 * 4))
+      Promise.resolve(new Image(10, 10, Buffer.from([]), 4, "test", 4, 10 * 4)),
     );
     providerRegistryMock.getScreen = jest.fn(() =>
       mockPartial<ScreenProviderInterface>({
-        grabScreen: grabScreenMock
-      })
+        grabScreen: grabScreenMock,
+      }),
     );
     const SUT = new ScreenClass(providerRegistryMock);
 
@@ -101,7 +103,7 @@ describe("colorAt", () => {
 
     // THEN
     await expect(result).rejects.toThrowError(
-      /^colorAt requires a Point, but received/
+      /^colorAt requires a Point, but received/,
     );
   });
 });

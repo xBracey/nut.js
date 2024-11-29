@@ -12,9 +12,8 @@
   "scripts": {
     "test": "jest --runInBand"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "dependencies": {
-    "@nut-tree/nut-js": "workspace:*"
+    "@nut-tree-macpad/nut-js": "workspace:*"
   }
 }

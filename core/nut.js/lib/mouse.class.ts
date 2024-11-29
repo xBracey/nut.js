@@ -1,7 +1,11 @@
-import { Button, isPoint, Point } from "@nut-tree/shared";
+import { Button, isPoint, Point } from "@nut-tree-macpad/shared";
 import { busyWaitForNanoSeconds, sleep } from "./sleep.function";
-import { calculateMovementTimesteps, EasingFunction, linear } from "./mouse-movement.function";
-import { ProviderRegistry } from "@nut-tree/provider-interfaces";
+import {
+  calculateMovementTimesteps,
+  EasingFunction,
+  linear,
+} from "./mouse-movement.function";
+import { ProviderRegistry } from "@nut-tree-macpad/provider-interfaces";
 
 /**
  * Config object for {@link MouseClass} class
@@ -24,7 +28,7 @@ export interface MouseConfig {
 export class MouseClass {
   public config: MouseConfig = {
     autoDelayMs: 100,
-    mouseSpeed: 1000
+    mouseSpeed: 1000,
   };
 
   /**
@@ -44,7 +48,7 @@ export class MouseClass {
   public async setPosition(target: Point): Promise<MouseClass> {
     if (!isPoint(target)) {
       const e = new Error(
-        `setPosition requires a Point, but received ${JSON.stringify(target)}`
+        `setPosition requires a Point, but received ${JSON.stringify(target)}`,
       );
       this.providerRegistry.getLogProvider().error(e);
       throw e;
@@ -81,7 +85,7 @@ export class MouseClass {
    */
   public async move(
     path: Point[] | Promise<Point[]>,
-    movementType: EasingFunction = linear
+    movementType: EasingFunction = linear,
   ): Promise<MouseClass> {
     try {
       let pathSteps = await path;
@@ -91,12 +95,12 @@ export class MouseClass {
       this.providerRegistry
         .getLogProvider()
         .info(
-          `Moving mouse to target point ${pathSteps[pathSteps.length - 1]}`
+          `Moving mouse to target point ${pathSteps[pathSteps.length - 1]}`,
         );
       const timeSteps = calculateMovementTimesteps(
         pathSteps.length,
         this.config.mouseSpeed,
-        movementType
+        movementType,
       );
       for (let idx = 0; idx < pathSteps.length; ++idx) {
         const node = pathSteps[idx];

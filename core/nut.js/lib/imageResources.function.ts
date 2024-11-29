@@ -1,13 +1,13 @@
 import { join, normalize } from "path";
 import { URL } from "url";
-import { ColorMode, Image } from "@nut-tree/shared";
+import { ColorMode, Image } from "@nut-tree-macpad/shared";
 import Jimp from "jimp";
-import { ProviderRegistry } from "@nut-tree/provider-interfaces";
+import { ProviderRegistry } from "@nut-tree-macpad/provider-interfaces";
 
 export function loadImageResource(
   providerRegistry: ProviderRegistry,
   resourceDirectory: string,
-  fileName: string
+  fileName: string,
 ) {
   const fullPath = normalize(join(resourceDirectory, fileName));
   return providerRegistry.getImageReader().load(fullPath);
@@ -39,7 +39,7 @@ export async function fetchFromUrl(url: string | URL): Promise<Image> {
         imageUrl.href,
         image.bitmap.data.length / (image.bitmap.width * image.bitmap.height),
         image.bitmap.data.length / image.bitmap.height,
-        ColorMode.RGB
+        ColorMode.RGB,
       );
     })
     .catch((err) => {

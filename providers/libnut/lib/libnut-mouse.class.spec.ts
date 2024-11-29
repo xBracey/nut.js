@@ -1,5 +1,5 @@
-import {libnut} from "../import_libnut";
-import {Button, Point} from "@nut-tree/shared";
+import { libnut } from "../import_libnut";
+import { Button, Point } from "@nut-tree-macpad/shared";
 import MouseAction from "./libnut-mouse.class";
 
 jest.mock("../import_libnut");
@@ -103,7 +103,10 @@ describe("libnut mouse action", () => {
 
       // THEN
       expect(libnut.mouseToggle).toHaveBeenCalledTimes(1);
-      expect(libnut.mouseToggle).toHaveBeenCalledWith("down", expect.any(String));
+      expect(libnut.mouseToggle).toHaveBeenCalledWith(
+        "down",
+        expect.any(String)
+      );
     });
 
     it("should reject on libnut errors", () => {

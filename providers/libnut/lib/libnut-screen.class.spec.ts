@@ -1,5 +1,5 @@
-import {libnut} from "../import_libnut";
-import {Region} from "@nut-tree/shared";
+import { libnut } from "../import_libnut";
+import { Region } from "@nut-tree-macpad/shared";
 import ScreenAction from "./libnut-screen.class";
 
 jest.mock("jimp", () => {});
@@ -36,9 +36,7 @@ describe("libnut screen action", () => {
         colorAt: jest.fn(),
         height: screenShotSize.height,
         image: Buffer.from(
-          new Array(screenShotSize.width * screenShotSize.height * 4).fill(
-            0
-          )
+          new Array(screenShotSize.width * screenShotSize.height * 4).fill(0)
         ),
         width: screenShotSize.width,
       }));
@@ -72,9 +70,7 @@ describe("libnut screen action", () => {
         colorAt: jest.fn(),
         height: screenShotSize.height,
         image: Buffer.from(
-          new Array(screenShotSize.width * screenShotSize.height * 4).fill(
-            0
-          )
+          new Array(screenShotSize.width * screenShotSize.height * 4).fill(0)
         ),
         width: screenShotSize.width,
       }));
