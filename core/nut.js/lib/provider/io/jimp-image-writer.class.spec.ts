@@ -1,5 +1,5 @@
 import ImageWriter from "./jimp-image-writer.class";
-import { Image } from "@nut-tree-macpad/shared";
+import { Image } from "macpad-shared";
 import Jimp from "jimp";
 
 jest.mock("jimp", () => {

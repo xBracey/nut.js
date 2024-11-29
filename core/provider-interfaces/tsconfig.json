@@ -1,5 +1,5 @@
 {
-  "extends": "@nut-tree-macpad/configs/tsconfig/base.json",
+  "extends": "macpad-configs/tsconfig/base.json",
   "compilerOptions": {
     "outDir": "./dist"
   },

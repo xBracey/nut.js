@@ -1,7 +1,7 @@
 {
   "name": "sample-mouse",
   "version": "4.2.0",
-  "private": true,
+  "private": false,
   "description": "A simple nut.js test example which tests mouse control",
   "author": {
     "name": "dry Software UG (haftungsbeschränkt)",
@@ -13,6 +13,6 @@
     "test": "jest --runInBand"
   },
   "dependencies": {
-    "@nut-tree-macpad/nut-js": "workspace:*"
+    "macpad-nut-js": "workspace:*"
   }
 }

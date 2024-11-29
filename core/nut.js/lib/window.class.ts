@@ -11,8 +11,8 @@ import {
   WindowElementQuery,
   WindowElementResultFindInput,
   WindowInterface,
-} from "@nut-tree-macpad/shared";
-import { ProviderRegistry } from "@nut-tree-macpad/provider-interfaces";
+} from "macpad-shared";
+import { ProviderRegistry } from "macpad-provider-interfaces";
 import { timeout } from "./util/timeout.function";
 
 export class Window implements WindowInterface {

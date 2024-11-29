@@ -1,4 +1,4 @@
-import { Key } from "@nut-tree-macpad/shared";
+import { Key } from "macpad-shared";
 
 /**
  * A KeyboardActionProvider should provide access to a systems keyboard

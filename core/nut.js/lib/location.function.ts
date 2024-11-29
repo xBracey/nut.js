@@ -1,4 +1,4 @@
-import { isRegion, Point, Region } from "@nut-tree-macpad/shared";
+import { isRegion, Point, Region } from "macpad-shared";
 
 /**
  * {@link centerOf} returns the center {@link Point} for a given {@link Region}

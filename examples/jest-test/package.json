@@ -1,7 +1,7 @@
 {
   "name": "sample-jest",
   "version": "4.2.0",
-  "private": true,
+  "private": false,
   "description": "A simple nut.js test example which demos Jest integration",
   "main": "index.js",
   "author": {
@@ -14,6 +14,6 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "@nut-tree-macpad/nut-js": "workspace:*"
+    "macpad-nut-js": "workspace:*"
   }
 }

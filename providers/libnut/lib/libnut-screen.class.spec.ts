@@ -1,5 +1,5 @@
 import { libnut } from "../import_libnut";
-import { Region } from "@nut-tree-macpad/shared";
+import { Region } from "macpad-shared";
 import ScreenAction from "./libnut-screen.class";
 
 jest.mock("jimp", () => {});

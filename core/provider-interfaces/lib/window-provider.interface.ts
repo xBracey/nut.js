@@ -1,4 +1,4 @@
-import { Point, Region, Size } from "@nut-tree-macpad/shared";
+import { Point, Region, Size } from "macpad-shared";
 
 /**
  * A WindowActionProvider should provide access to a system's window system

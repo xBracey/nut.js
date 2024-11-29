@@ -1,5 +1,5 @@
 import { libnut } from "../import_libnut";
-import { Key } from "@nut-tree-macpad/shared";
+import { Key } from "macpad-shared";
 import KeyboardAction from "./libnut-keyboard.class";
 
 jest.mock("../import_libnut");

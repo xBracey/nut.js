@@ -1,4 +1,4 @@
-import { Image, Region } from "@nut-tree-macpad/shared";
+import { Image, Region } from "macpad-shared";
 
 /**
  * A ScreenActionProvider should provide access to a system's main screen

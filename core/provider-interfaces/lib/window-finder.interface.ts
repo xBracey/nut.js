@@ -1,4 +1,4 @@
-import { WindowQuery } from "@nut-tree-macpad/shared";
+import { WindowQuery } from "macpad-shared";
 
 /**
  * A WindowFinder should provide an abstraction layer to perform window searches

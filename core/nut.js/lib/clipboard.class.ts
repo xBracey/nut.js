@@ -1,7 +1,7 @@
 /**
  * {@link ClipboardClass} class gives access to a systems clipboard
  */
-import { ProviderRegistry } from "@nut-tree-macpad/provider-interfaces";
+import { ProviderRegistry } from "macpad-provider-interfaces";
 
 export class ClipboardClass {
   /**

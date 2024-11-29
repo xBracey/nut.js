@@ -1,5 +1,5 @@
 import { AssertClass } from "./assert.class";
-import { Region } from "@nut-tree-macpad/shared";
+import { Region } from "macpad-shared";
 import { ScreenClass } from "./screen.class";
 import providerRegistry from "./provider/provider-registry.class";
 import { Image } from "../index";

@@ -1,4 +1,4 @@
-import { Button, Point } from "@nut-tree-macpad/shared";
+import { Button, Point } from "macpad-shared";
 
 /**
  * A MouseActionProvider should provide access to a systems mouse input

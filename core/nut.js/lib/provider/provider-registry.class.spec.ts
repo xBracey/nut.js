@@ -8,7 +8,7 @@ import {
   MouseProviderInterface,
   ScreenProviderInterface,
   WindowProviderInterface,
-} from "@nut-tree-macpad/provider-interfaces";
+} from "macpad-provider-interfaces";
 
 describe("DefaultProviderRegistry", () => {
   describe("non-defaults", () => {

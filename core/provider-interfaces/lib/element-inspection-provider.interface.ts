@@ -1,7 +1,4 @@
-import {
-  WindowElement,
-  WindowElementDescription,
-} from "@nut-tree-macpad/shared";
+import { WindowElement, WindowElementDescription } from "macpad-shared";
 
 /**
  * An ElementInspectionProvider provides methods to list and inspect window elements

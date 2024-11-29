@@ -13,8 +13,8 @@ import {
   Region,
   RegionResultFindInput,
   TextQuery,
-} from "@nut-tree-macpad/shared";
-import { ProviderRegistry } from "@nut-tree-macpad/provider-interfaces";
+} from "macpad-shared";
+import { ProviderRegistry } from "macpad-provider-interfaces";
 
 export function isRegionResultFindInput(
   input: RegionResultFindInput | PointResultFindInput,

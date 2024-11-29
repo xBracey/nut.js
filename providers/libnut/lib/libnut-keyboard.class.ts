@@ -1,6 +1,6 @@
 import { libnut } from "../import_libnut";
-import { Key } from "@nut-tree-macpad/shared";
-import { KeyboardProviderInterface } from "@nut-tree-macpad/provider-interfaces";
+import { Key } from "macpad-shared";
+import { KeyboardProviderInterface } from "macpad-provider-interfaces";
 
 export default class KeyboardAction implements KeyboardProviderInterface {
   public static KeyLookupMap = new Map<Key, string | null>([

@@ -12,7 +12,7 @@ nut.js provides custom matchers for Jest, which allows to write UI tests using w
 In order to use our custom matchers we need to extend Jest's `expect`
 
 ```js
-const { jestMatchers } = require("@nut-tree-macpad/nut-js");
+const { jestMatchers } = require("macpad-nut-js");
 
 expect.extend(jestMatchers);
 ```
@@ -24,7 +24,7 @@ expect.extend(jestMatchers);
 It receives a [Point](https://nut-tree.github.io/apidoc/classes/point.html) which specifies the expected [mouse](https://nut-tree.github.io/apidoc/classes/mouse.html) cursor position on screen.
 
 ```js
-const { jestMatchers, mouse, Point } = require("@nut-tree-macpad/nut-js");
+const { jestMatchers, mouse, Point } = require("macpad-nut-js");
 
 expect.extend(jestMatchers);
 
@@ -45,7 +45,7 @@ describe("Basic test with custom Jest matchers", () => {
 It also supports negation as known from other matchers:
 
 ```js
-const { jestMatchers, mouse, Point } = require("@nut-tree-macpad/nut-js");
+const { jestMatchers, mouse, Point } = require("macpad-nut-js");
 
 expect.extend(jestMatchers);
 
@@ -69,7 +69,7 @@ describe("Basic test with custom Jest matchers", () => {
 `toBeIn` allows us to verify whether our [mouse](https://nut-tree.github.io/apidoc/classes/mouse.html) cursor is located within a certain [Region](https://nut-tree.github.io/apidoc/classes/region.html) or not.
 
 ```js
-const { jestMatchers, mouse, Point } = require("@nut-tree-macpad/nut-js");
+const { jestMatchers, mouse, Point } = require("macpad-nut-js");
 
 expect.extend(jestMatchers);
 
@@ -91,7 +91,7 @@ describe("Basic test with custom Jest matchers", () => {
 Just like [`toBeAt`](#tobeat), it supports negation:
 
 ```js
-const { jestMatchers, mouse, Point } = require("@nut-tree-macpad/nut-js");
+const { jestMatchers, mouse, Point } = require("macpad-nut-js");
 
 expect.extend(jestMatchers);
 
@@ -117,7 +117,7 @@ Sometimes we want to verify that our [screen](https://nut-tree.github.io/apidoc/
 `toShow` receives a filename of an image in our [resourceDirectory](https://nut-tree.github.io/apidoc/classes/screen.html#config) and checks whether it's visible on our screen or not.
 
 ```js
-const { jestMatchers, screen } = require("@nut-tree-macpad/nut-js");
+const { jestMatchers, screen } = require("macpad-nut-js");
 
 expect.extend(jestMatchers);
 
@@ -137,7 +137,7 @@ describe("Basic test with custom Jest matchers", () => {
 Once again, it is also possible to negate an expectation:
 
 ```js
-const { jestMatchers, screen } = require("@nut-tree-macpad/nut-js");
+const { jestMatchers, screen } = require("macpad-nut-js");
 
 expect.extend(jestMatchers);
 

@@ -21,7 +21,7 @@ The nut.js [keyboard](https://nut-tree.github.io/apidoc/classes/keyboard.html) c
 `type` allows one to type either [strings or Keys](https://nut-tree.github.io/apidoc/globals.html#stringorkey)
 
 ```js
-const { keyboard, Key } = require("@nut-tree-macpad/nut-js");
+const { keyboard, Key } = require("macpad-nut-js");
 
 describe("Keyboard test", () => {
   it("should open Spotlight on macOS", async () => {
@@ -36,7 +36,7 @@ describe("Keyboard test", () => {
 `pressKey` will press and hold multiple keys.
 
 ```js
-const { keyboard, Key } = require("@nut-tree-macpad/nut-js");
+const { keyboard, Key } = require("macpad-nut-js");
 
 describe("Keyboard test", () => {
   it("should press and release Alt+F4", async () => {
@@ -51,7 +51,7 @@ describe("Keyboard test", () => {
 `releaseKey` will release multiple keys again.
 
 ```js
-const { keyboard, Key } = require("@nut-tree-macpad/nut-js");
+const { keyboard, Key } = require("macpad-nut-js");
 
 describe("Keyboard test", () => {
   it("should press and release Alt+F4", async () => {

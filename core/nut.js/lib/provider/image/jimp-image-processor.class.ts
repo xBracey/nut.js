@@ -1,6 +1,6 @@
 import Jimp from "jimp";
-import { Image, imageToJimp, Point, RGBA } from "@nut-tree-macpad/shared";
-import { ImageProcessor } from "@nut-tree-macpad/provider-interfaces";
+import { Image, imageToJimp, Point, RGBA } from "macpad-shared";
+import { ImageProcessor } from "macpad-provider-interfaces";
 
 export default class implements ImageProcessor {
   async colorAt(

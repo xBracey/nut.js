@@ -1,4 +1,4 @@
-import { Image, Region, TextQuery } from "@nut-tree-macpad/shared";
+import { Image, Region, TextQuery } from "macpad-shared";
 import {
   createMatchRequest,
   getMatchResult,
@@ -12,7 +12,7 @@ import {
   LogProviderInterface,
   ProviderRegistry,
   TextFinderInterface,
-} from "@nut-tree-macpad/provider-interfaces";
+} from "macpad-provider-interfaces";
 import { NoopLogProvider } from "./provider/log/noop-log-provider.class";
 
 beforeEach(() => {

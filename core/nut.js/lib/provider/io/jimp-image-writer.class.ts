@@ -1,8 +1,5 @@
-import {
-  ImageWriter,
-  ImageWriterParameters,
-} from "@nut-tree-macpad/provider-interfaces";
-import { imageToJimp } from "@nut-tree-macpad/shared";
+import { ImageWriter, ImageWriterParameters } from "macpad-provider-interfaces";
+import { imageToJimp } from "macpad-shared";
 
 export default class implements ImageWriter {
   store(parameters: ImageWriterParameters): Promise<void> {

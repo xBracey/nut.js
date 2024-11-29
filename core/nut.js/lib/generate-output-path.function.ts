@@ -1,6 +1,6 @@
 import { join, parse } from "path";
 import { cwd } from "process";
-import { FileType } from "@nut-tree-macpad/shared";
+import { FileType } from "macpad-shared";
 
 /**
  * {@link generateOutputPath} is used to assemble full file path from a filename and various parameters

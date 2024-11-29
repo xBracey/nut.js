@@ -1,7 +1,7 @@
 {
-  "name": "@nut-tree-macpad/provider-interfaces",
+  "name": "macpad-provider-interfaces",
   "version": "4.2.0",
-  "description": "Public provider interfaces for @nut-tree-macpad/nut-js",
+  "description": "Public provider interfaces for macpad-nut-js",
   "main": "dist/index",
   "typings": "dist/index",
   "scripts": {
@@ -23,9 +23,9 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@nut-tree-macpad/shared": "workspace:*"
+    "macpad-shared": "workspace:*"
   },
   "devDependencies": {
-    "@nut-tree-macpad/configs": "workspace:*"
+    "macpad-configs": "workspace:*"
   }
 }

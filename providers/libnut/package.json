@@ -1,6 +1,6 @@
 {
-  "name": "@nut-tree-macpad/libnut",
-  "version": "4.2.0",
+  "name": "macpad-libnut",
+  "version": "4.2.1",
   "description": "libnut is an N-API module for desktop automation with node",
   "main": "dist/index",
   "typings": "dist/index",
@@ -42,14 +42,14 @@
     "node": ">=10.15.3"
   },
   "dependencies": {
-    "libnut-macpad": "3.0.0"
+    "macpad-libnut-darwin": "3.0.0"
   },
   "devDependencies": {
-    "@nut-tree-macpad/configs": "workspace:*",
-    "@nut-tree-macpad/shared": "workspace:*",
-    "@nut-tree-macpad/provider-interfaces": "workspace:*"
+    "macpad-configs": "workspace:*",
+    "macpad-shared": "workspace:*",
+    "macpad-provider-interfaces": "workspace:*"
   },
   "peerDependencies": {
-    "@nut-tree-macpad/nut-js": "workspace:*"
+    "macpad-nut-js": "workspace:*"
   }
 }

@@ -13,7 +13,7 @@ const {
   down,
   left,
   up,
-} = require("@nut-tree-macpad/nut-js");
+} = require("macpad-nut-js");
 
 expect.extend(jestMatchers);
 

@@ -23,11 +23,11 @@ import {
   WindowCallback,
   WindowResultFindInput,
   WordQuery,
-} from "@nut-tree-macpad/shared";
+} from "macpad-shared";
 import { generateOutputPath } from "./generate-output-path.function";
 import { timeout } from "./util/timeout.function";
 import { Window } from "./window.class";
-import { ProviderRegistry } from "@nut-tree-macpad/provider-interfaces";
+import { ProviderRegistry } from "macpad-provider-interfaces";
 import {
   createMatchRequest,
   getMatchResult,

@@ -1,6 +1,6 @@
 {
-  "name": "@nut-tree-macpad/configs",
-  "private": true,
+  "name": "macpad-configs",
+  "private": false,
   "version": "4.2.0",
   "description": "Shared configs for nut.js",
   "author": {

@@ -141,7 +141,7 @@ All notable changes to this project will be documented in this file.
 - Enhancement: imprecise error message if image is too large [(#169)](https://github.com/nut-tree/nut.js/issues/169)
 - Bugfix: `waitFor` does not properly cancel [(#174)](https://github.com/nut-tree/nut.js/issues/174)
 - Feature: Enable GitHub Actions [(#200)](https://github.com/nut-tree/nut.js/issues/200)
-- Enhancement: Use @nut-tree-macpad/libnut@next for snapshot releases [(#202)](https://github.com/nut-tree/nut.js/issues/202)
+- Enhancement: Use macpad-libnut@next for snapshot releases [(#202)](https://github.com/nut-tree/nut.js/issues/202)
 - Enhancement: Requesting image search outside of screen boundaries fails with runtime error [(#195)](https://github.com/nut-tree/nut.js/issues/195)
 
 ## 1.5.0

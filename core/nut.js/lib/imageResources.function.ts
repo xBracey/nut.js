@@ -1,8 +1,8 @@
 import { join, normalize } from "path";
 import { URL } from "url";
-import { ColorMode, Image } from "@nut-tree-macpad/shared";
+import { ColorMode, Image } from "macpad-shared";
 import Jimp from "jimp";
-import { ProviderRegistry } from "@nut-tree-macpad/provider-interfaces";
+import { ProviderRegistry } from "macpad-provider-interfaces";
 
 export function loadImageResource(
   providerRegistry: ProviderRegistry,

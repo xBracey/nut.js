@@ -8,8 +8,8 @@ const {
   imageResource,
   Region,
   sleep,
-} = require("@nut-tree-macpad/nut-js");
-require("@nut-tree-macpad/nl-matcher");
+} = require("macpad-nut-js");
+require("macpad-nl-matcher");
 
 expect.extend(jestMatchers);
 

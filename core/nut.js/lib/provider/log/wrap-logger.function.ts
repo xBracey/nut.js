@@ -1,4 +1,4 @@
-import { LogProviderInterface } from "@nut-tree-macpad/provider-interfaces";
+import { LogProviderInterface } from "macpad-provider-interfaces";
 
 const logIdentifier = "[nut.js]";
 const nonErrorLevels = ["info", "warn", "debug", "trace"];

@@ -1,4 +1,4 @@
-import { LogProviderInterface } from "@nut-tree-macpad/provider-interfaces";
+import { LogProviderInterface } from "macpad-provider-interfaces";
 
 export class NoopLogProvider implements LogProviderInterface {
   public trace(_: string, __?: {}) {}

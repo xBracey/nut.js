@@ -1,11 +1,11 @@
-import { Button, Point } from "@nut-tree-macpad/shared";
+import { Button, Point } from "macpad-shared";
 import { MouseClass } from "./mouse.class";
 import { LineHelper } from "./util/linehelper.class";
 import { mockPartial } from "sneer";
 import {
   MouseProviderInterface,
   ProviderRegistry,
-} from "@nut-tree-macpad/provider-interfaces";
+} from "macpad-provider-interfaces";
 import { NoopLogProvider } from "./provider/log/noop-log-provider.class";
 
 beforeEach(() => {

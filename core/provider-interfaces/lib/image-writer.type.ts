@@ -1,4 +1,4 @@
-import { Image } from "@nut-tree-macpad/shared";
+import { Image } from "macpad-shared";
 import { DataSinkInterface } from "./data-sink.interface";
 
 export interface ImageWriterParameters {

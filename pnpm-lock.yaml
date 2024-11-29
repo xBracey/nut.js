@@ -49,36 +49,36 @@ importers:
 
   core/nut.js:
     dependencies:
-      '@nut-tree-macpad/default-clipboard-provider':
-        specifier: workspace:*
-        version: link:../../providers/clipboardy
-      '@nut-tree-macpad/libnut':
-        specifier: workspace:*
-        version: link:../../providers/libnut
-      '@nut-tree-macpad/provider-interfaces':
-        specifier: workspace:*
-        version: link:../provider-interfaces
-      '@nut-tree-macpad/shared':
-        specifier: workspace:*
-        version: link:../shared
       jimp:
         specifier: 0.22.10
         version: 0.22.10
+      macpad-default-clipboard-provider:
+        specifier: workspace:*
+        version: link:../../providers/clipboardy
+      macpad-libnut:
+        specifier: workspace:*
+        version: link:../../providers/libnut
+      macpad-provider-interfaces:
+        specifier: workspace:*
+        version: link:../provider-interfaces
+      macpad-shared:
+        specifier: workspace:*
+        version: link:../shared
       node-abort-controller:
         specifier: 3.1.1
         version: 3.1.1
     devDependencies:
-      '@nut-tree-macpad/configs':
+      macpad-configs:
         specifier: workspace:*
         version: link:../configs
 
   core/provider-interfaces:
     dependencies:
-      '@nut-tree-macpad/shared':
+      macpad-shared:
         specifier: workspace:*
         version: link:../shared
     devDependencies:
-      '@nut-tree-macpad/configs':
+      macpad-configs:
         specifier: workspace:*
         version: link:../configs
 
@@ -91,15 +91,12 @@ importers:
         specifier: 3.1.1
         version: 3.1.1
     devDependencies:
-      '@nut-tree-macpad/configs':
+      macpad-configs:
         specifier: workspace:*
         version: link:../configs
 
   e2e/window-test:
     devDependencies:
-      '@nut-tree-macpad/nut-js':
-        specifier: workspace:*
-        version: link:../../core/nut.js
       '@playwright/test':
         specifier: 1.41.2
         version: 1.41.2
@@ -112,19 +109,22 @@ importers:
       jest-playwright-preset:
         specifier: 4.0.0
         version: 4.0.0(jest-circus@29.7.0)(jest-environment-node@29.7.0)(jest-runner@29.7.0)(jest@29.7.0(@types/node@20.11.17)(ts-node@10.9.2(@types/node@20.11.17)(typescript@5.3.3)))
+      macpad-nut-js:
+        specifier: workspace:*
+        version: link:../../core/nut.js
       playwright:
         specifier: 1.41.2
         version: 1.41.2
 
   examples/jest-test:
     dependencies:
-      '@nut-tree-macpad/nut-js':
+      macpad-nut-js:
         specifier: workspace:*
         version: link:../../core/nut.js
 
   examples/keyboard-test:
     dependencies:
-      '@nut-tree-macpad/nut-js':
+      macpad-nut-js:
         specifier: workspace:*
         version: link:../../core/nut.js
       run-script-os:
@@ -133,58 +133,58 @@ importers:
 
   examples/mouse-test:
     dependencies:
-      '@nut-tree-macpad/nut-js':
+      macpad-nut-js:
         specifier: workspace:*
         version: link:../../core/nut.js
 
   examples/screen-test:
     dependencies:
-      '@nut-tree-macpad/nut-js':
+      macpad-nut-js:
         specifier: workspace:*
         version: link:../../core/nut.js
     optionalDependencies:
-      '@nut-tree-macpad/nl-matcher':
+      macpad-nl-matcher:
         specifier: 2.2.0
-        version: 2.2.0(@nut-tree-macpad/nut-js@core+nut.js)
+        version: 2.2.0(macpad-nut-js@core+nut.js)
 
   examples/typescript-test:
     dependencies:
-      '@nut-tree-macpad/nut-js':
+      macpad-nut-js:
         specifier: workspace:*
         version: link:../../core/nut.js
 
   providers/clipboardy:
     dependencies:
-      '@nut-tree-macpad/nut-js':
-        specifier: workspace:*
-        version: link:../../core/nut.js
       clipboardy:
         specifier: 2.3.0
         version: 2.3.0
+      macpad-nut-js:
+        specifier: workspace:*
+        version: link:../../core/nut.js
     devDependencies:
-      '@nut-tree-macpad/configs':
+      macpad-configs:
         specifier: workspace:*
         version: link:../../core/configs
-      '@nut-tree-macpad/provider-interfaces':
+      macpad-provider-interfaces:
         specifier: workspace:*
         version: link:../../core/provider-interfaces
 
   providers/libnut:
     dependencies:
-      '@nut-tree-macpad/nut-js':
-        specifier: workspace:*
-        version: link:../../core/nut.js
-      libnut-macpad:
+      macpad-libnut-darwin:
         specifier: 3.0.0
         version: 3.0.0
+      macpad-nut-js:
+        specifier: workspace:*
+        version: link:../../core/nut.js
     devDependencies:
-      '@nut-tree-macpad/configs':
+      macpad-configs:
         specifier: workspace:*
         version: link:../../core/configs
-      '@nut-tree-macpad/provider-interfaces':
+      macpad-provider-interfaces:
         specifier: workspace:*
         version: link:../../core/provider-interfaces
-      '@nut-tree-macpad/shared':
+      macpad-shared:
         specifier: workspace:*
         version: link:../../core/shared
 
@@ -642,27 +642,6 @@ packages:
   '@nut-tree-fork/node-mac-permissions@2.2.1':
     resolution: {integrity: sha512-iSfOTDiBZ7VDa17PoQje5rUaZSvSAaq+XEyXCmhPuQwV5XuNU02Grv6oFhsdpz89w7+UvB/8KX/cX5IYQ5o2Bw==}
     os: [darwin]
-
-  '@nut-tree-macpad/nl-matcher-darwin@2.2.0':
-    resolution: {integrity: sha512-dIVEhcMYCgWMUkAvH1FLkgR0NnQFocn8CS+5mWOzu/+CCOhMXbM1tPgnSNFtdmgrrtp8fU6IoKCRmjV43gzuzw==}
-    cpu: [x64, arm64]
-    os: [darwin, linux, win32]
-
-  '@nut-tree-macpad/nl-matcher-linux@2.2.0':
-    resolution: {integrity: sha512-SnUOMAxiqSE7UMmb5BzWYveQKKYbrl/2JwKNGN/9lyWsVjtPR84mYs4qYfF7USd6LYz/0niUSCHNt+TOx9fuJA==}
-    cpu: [x64, arm64]
-    os: [darwin, linux, win32]
-
-  '@nut-tree-macpad/nl-matcher-win32@2.2.0':
-    resolution: {integrity: sha512-aX5oHjgJVkGMOwsFbWslAA7pMPhmodO0eUkXe76W2QusKhEkictIwcFIotlCgRSJl/Z2qQ8dXjAJgtNcR7RpdA==}
-    cpu: [x64, arm64]
-    os: [darwin, linux, win32]
-
-  '@nut-tree-macpad/nl-matcher@2.2.0':
-    resolution: {integrity: sha512-vpZzA67eXS6FXf446GCH7TycuO23qQdlHym8WKcQzKi59j8OQFWZTW5+mg13P9q/6m2SOrEMoGeUttMWCCjlBQ==}
-    engines: {node: '>=10.15.3'}
-    peerDependencies:
-      '@nut-tree-macpad/nut-js': '>=3.0.0'
 
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
@@ -1795,12 +1774,6 @@ packages:
     resolution: {integrity: sha512-qsda+H8jTaUaN/x5vzW2rzc+8Rw4TAQ/4KjB46IwK5VH+IlVeeeje/EoZRpiXvIqjFgK84QffqPztGI3VBLG1A==}
     engines: {node: '>=6'}
 
-  libnut-macpad@3.0.0:
-    resolution: {integrity: sha512-glJZHByso3yoUmjwGHoUf4EVgpGz9+iXJqT6u2zP3tsK/t7S8oVI5K7JQ6xRrP7G9VpfP1wIWR0j8xWgcosKwQ==}
-    engines: {node: '>=10.15.3'}
-    cpu: [arm64]
-    os: [darwin]
-
   lilconfig@3.0.0:
     resolution: {integrity: sha512-K2U4W2Ff5ibV7j7ydLr+zLAkIg5JJ4lPn1Ltsdt+Tz/IjQ8buJ55pZAxoP34lqIiwtF9iAvtLv3JGv7CAyAg+g==}
     engines: {node: '>=14'}
@@ -1854,6 +1827,33 @@ packages:
 
   lunr@2.3.9:
     resolution: {integrity: sha512-zTU3DaZaF3Rt9rhN3uBMGQD3dD2/vFQqnvZCDv4dl5iOzq2IZQqTxu90r4E5J+nP70J3ilqVCrbho2eWaeW8Ow==}
+
+  macpad-libnut-darwin@3.0.0:
+    resolution: {integrity: sha512-i+8veIjjzlk4WdDLuews79CvBakkEIwuXdnieoQgfG0JlfalzcI52t/3xwPM2Ez9O5ZWnPfMILjzv4k10eSPdQ==}
+    engines: {node: '>=10.15.3'}
+    cpu: [arm64]
+    os: [darwin]
+
+  macpad-nl-matcher-darwin@2.2.0:
+    resolution: {integrity: sha512-dIVEhcMYCgWMUkAvH1FLkgR0NnQFocn8CS+5mWOzu/+CCOhMXbM1tPgnSNFtdmgrrtp8fU6IoKCRmjV43gzuzw==}
+    cpu: [x64, arm64]
+    os: [darwin, linux, win32]
+
+  macpad-nl-matcher-linux@2.2.0:
+    resolution: {integrity: sha512-SnUOMAxiqSE7UMmb5BzWYveQKKYbrl/2JwKNGN/9lyWsVjtPR84mYs4qYfF7USd6LYz/0niUSCHNt+TOx9fuJA==}
+    cpu: [x64, arm64]
+    os: [darwin, linux, win32]
+
+  macpad-nl-matcher-win32@2.2.0:
+    resolution: {integrity: sha512-aX5oHjgJVkGMOwsFbWslAA7pMPhmodO0eUkXe76W2QusKhEkictIwcFIotlCgRSJl/Z2qQ8dXjAJgtNcR7RpdA==}
+    cpu: [x64, arm64]
+    os: [darwin, linux, win32]
+
+  macpad-nl-matcher@2.2.0:
+    resolution: {integrity: sha512-vpZzA67eXS6FXf446GCH7TycuO23qQdlHym8WKcQzKi59j8OQFWZTW5+mg13P9q/6m2SOrEMoGeUttMWCCjlBQ==}
+    engines: {node: '>=10.15.3'}
+    peerDependencies:
+      macpad-nut-js: '>=3.0.0'
 
   make-dir@3.1.0:
     resolution: {integrity: sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==}
@@ -3348,29 +3348,6 @@ snapshots:
       node-addon-api: 5.0.0
     optional: true
 
-  '@nut-tree-macpad/nl-matcher-darwin@2.2.0':
-    dependencies:
-      bindings: 1.5.0
-    optional: true
-
-  '@nut-tree-macpad/nl-matcher-linux@2.2.0':
-    dependencies:
-      bindings: 1.5.0
-    optional: true
-
-  '@nut-tree-macpad/nl-matcher-win32@2.2.0':
-    dependencies:
-      bindings: 1.5.0
-    optional: true
-
-  '@nut-tree-macpad/nl-matcher@2.2.0(@nut-tree-macpad/nut-js@core+nut.js)':
-    dependencies:
-      '@nut-tree-macpad/nl-matcher-darwin': 2.2.0
-      '@nut-tree-macpad/nl-matcher-linux': 2.2.0
-      '@nut-tree-macpad/nl-matcher-win32': 2.2.0
-      '@nut-tree-macpad/nut-js': link:core/nut.js
-    optional: true
-
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
@@ -4748,12 +4725,6 @@ snapshots:
 
   leven@3.1.0: {}
 
-  libnut-macpad@3.0.0:
-    dependencies:
-      bindings: 1.5.0
-    optionalDependencies:
-      '@nut-tree-fork/node-mac-permissions': 2.2.1
-
   lilconfig@3.0.0: {}
 
   lines-and-columns@1.2.4: {}
@@ -4824,6 +4795,35 @@ snapshots:
       yallist: 4.0.0
 
   lunr@2.3.9: {}
+
+  macpad-libnut-darwin@3.0.0:
+    dependencies:
+      bindings: 1.5.0
+    optionalDependencies:
+      '@nut-tree-fork/node-mac-permissions': 2.2.1
+
+  macpad-nl-matcher-darwin@2.2.0:
+    dependencies:
+      bindings: 1.5.0
+    optional: true
+
+  macpad-nl-matcher-linux@2.2.0:
+    dependencies:
+      bindings: 1.5.0
+    optional: true
+
+  macpad-nl-matcher-win32@2.2.0:
+    dependencies:
+      bindings: 1.5.0
+    optional: true
+
+  macpad-nl-matcher@2.2.0(macpad-nut-js@core+nut.js):
+    dependencies:
+      macpad-nl-matcher-darwin: 2.2.0
+      macpad-nl-matcher-linux: 2.2.0
+      macpad-nl-matcher-win32: 2.2.0
+      macpad-nut-js: link:core/nut.js
+    optional: true
 
   make-dir@3.1.0:
     dependencies:

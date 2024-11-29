@@ -1,6 +1,6 @@
 import Jimp from "jimp";
-import { ImageReader } from "@nut-tree-macpad/provider-interfaces";
-import { ColorMode, Image } from "@nut-tree-macpad/shared";
+import { ImageReader } from "macpad-provider-interfaces";
+import { ColorMode, Image } from "macpad-shared";
 
 export default class implements ImageReader {
   load(parameters: string): Promise<Image> {

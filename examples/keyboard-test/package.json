@@ -1,7 +1,7 @@
 {
   "name": "sample-keyboard",
   "version": "4.2.0",
-  "private": true,
+  "private": false,
   "description": "A simple nut.js test example which tests keyboard control",
   "main": "index.js",
   "author": {
@@ -15,7 +15,7 @@
     "test:default": "echo 'No keyboard tests for current platform'"
   },
   "dependencies": {
-    "@nut-tree-macpad/nut-js": "workspace:*",
+    "macpad-nut-js": "workspace:*",
     "run-script-os": "^1.1.6"
   }
 }

@@ -14,7 +14,7 @@ import {
   RGBA,
   WindowQuery,
   WordQuery,
-} from "@nut-tree-macpad/shared";
+} from "macpad-shared";
 
 export {
   AssertClass,
@@ -28,10 +28,10 @@ export {
   providerRegistry,
 };
 
-export { MatchRequest } from "@nut-tree-macpad/shared";
-export { MatchResult } from "@nut-tree-macpad/shared";
-export * from "@nut-tree-macpad/provider-interfaces";
-export * from "@nut-tree-macpad/shared";
+export { MatchRequest } from "macpad-shared";
+export { MatchResult } from "macpad-shared";
+export * from "macpad-provider-interfaces";
+export * from "macpad-shared";
 
 export { jestMatchers } from "./lib/expect/jest.matcher.function";
 export { sleep } from "./lib/sleep.function";

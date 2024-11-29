@@ -1,6 +1,6 @@
 import { libnut } from "../import_libnut";
-import { Point, Region, Size } from "@nut-tree-macpad/shared";
-import { WindowProviderInterface } from "@nut-tree-macpad/provider-interfaces";
+import { Point, Region, Size } from "macpad-shared";
+import { WindowProviderInterface } from "macpad-provider-interfaces";
 
 export default class WindowAction implements WindowProviderInterface {
   public getWindows(): Promise<number[]> {

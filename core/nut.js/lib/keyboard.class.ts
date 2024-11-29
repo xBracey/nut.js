@@ -1,6 +1,6 @@
-import { Key } from "@nut-tree-macpad/shared";
+import { Key } from "macpad-shared";
 import { sleep } from "./sleep.function";
-import { ProviderRegistry } from "@nut-tree-macpad/provider-interfaces";
+import { ProviderRegistry } from "macpad-provider-interfaces";
 
 type StringOrKey = string[] | Key[];
 

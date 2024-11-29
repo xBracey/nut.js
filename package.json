@@ -1,7 +1,7 @@
 {
-  "name": "@nut-tree-macpad/monorepo",
+  "name": "macpad-monorepo",
   "version": "4.2.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "test": "pnpm -r test",
     "compile": "pnpm -r run compile",
@@ -11,7 +11,8 @@
     "publish:next": "pnpm -r run publish:next",
     "publish:release": "pnpm -r run publish:release",
     "typedoc-all": "pnpm -r run typedoc",
-    "typedoc": "pnpm run typedoc-all && typedoc"
+    "typedoc": "pnpm run typedoc-all && typedoc",
+    "clean": "pnpm -r run clean"
   },
   "packageManager": "pnpm@8.15.2",
   "workspaces": [

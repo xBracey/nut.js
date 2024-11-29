@@ -1,5 +1,5 @@
 import { screen } from "../../../index";
-import { Point, RGBA } from "@nut-tree-macpad/shared";
+import { Point, RGBA } from "macpad-shared";
 
 export const toHaveColor = async (received: Point, needle: RGBA) => {
   const color = await screen.colorAt(received);

@@ -1,8 +1,4 @@
-import {
-  FindInput,
-  OptionalSearchParameters,
-  Region,
-} from "@nut-tree-macpad/shared";
+import { FindInput, OptionalSearchParameters, Region } from "macpad-shared";
 import { ScreenClass } from "./screen.class";
 
 export class AssertClass {

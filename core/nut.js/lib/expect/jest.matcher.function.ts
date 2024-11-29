@@ -4,7 +4,7 @@ import {
   Point,
   Region,
   RGBA,
-} from "@nut-tree-macpad/shared";
+} from "macpad-shared";
 import { toBeAt } from "./matchers/toBeAt.function";
 import { toBeIn } from "./matchers/toBeIn.function";
 import { toShow } from "./matchers/toShow.function";

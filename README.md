@@ -112,9 +112,9 @@ It's work in progress and will undergo constant modification.
 - [x] Retrieve RGBA color information on screen
 - [x] Highlighting screen regions
 - [x] Find a single or multiple occurrences of an image on screen (requires an additional provider package like
-      e.g. [nut-tree/template-matcher](https://www.npmjs.com/package/@nut-tree-macpad/template-matcher))
+      e.g. [nut-tree/template-matcher](https://www.npmjs.com/package/macpad-template-matcher))
 - [x] Wait for an image to appear on screen (requires an additional provider package like
-      e.g. [nut-tree/template-matcher](https://www.npmjs.com/package/@nut-tree-macpad/template-matcher))
+      e.g. [nut-tree/template-matcher](https://www.npmjs.com/package/macpad-template-matcher))
 - [x] Find a single or multiple occurrences of text on screen (\*)
 - [x] Wait for a piece of text to appear on screen (\*)
 - [x] Find a single or multiple windows on screen (\*)
@@ -147,13 +147,13 @@ const {
   centerOf,
   Button,
   getActiveWindow,
-} = require("@nut-tree-macpad/nut-js");
+} = require("macpad-nut-js");
 const {
   preloadLanguages,
   Language,
   LanguageModelType,
   configure,
-} = require("@nut-tree-macpad/plugin-ocr");
+} = require("macpad-plugin-ocr");
 
 configure({ languageModelType: LanguageModelType.BEST });
 
@@ -169,7 +169,7 @@ function activeWindowRegion() {
 (async () => {
   await preloadLanguages([Language.English], [LanguageModelType.BEST]);
   await sleep(5000);
-  const result = await screen.find(singleWord("@nut-tree-macpad/nut-js"));
+  const result = await screen.find(singleWord("macpad-nut-js"));
   await mouse.move(straightTo(centerOf(result)));
   await mouse.click(Button.LEFT);
   await screen.waitFor(singleWord("Native"), 15000, 1000, {
@@ -267,7 +267,7 @@ The core functionality of `nut.js` is open source and available on GitHub.
 
 To build nut.js from source you'll have to build native dependencies first.
 
-- Start with [@nut-tree-macpad/libnut-core](https://github.com/nut-tree/libnut-core)
+- Start with [macpad-libnut-core](https://github.com/nut-tree/libnut-core)
   - A build pipeline can be found in the respective repository
 - Update dependencies in `nut.js` to point to your local build of `libnut-core`
   - A build pipeline can be found in the respective repository
@@ -284,13 +284,13 @@ package, [check out the registry access tutorial for reference](https://nutjs.de
 With everything set up, running
 
 ```bash
-npm i @nut-tree-macpad/nut-js
+npm i macpad-nut-js
 ```
 
 or
 
 ```bash
-yarn add @nut-tree-macpad/nut-js
+yarn add macpad-nut-js
 ```
 
 will install `nut.js` and its required dependencies.
@@ -302,13 +302,13 @@ will install `nut.js` and its required dependencies.
 Running
 
 ```bash
-npm i @nut-tree-macpad/nut-js@next
+npm i macpad-nut-js@next
 ```
 
 or
 
 ```bash
-yarn add @nut-tree-macpad/nut-js@next
+yarn add macpad-nut-js@next
 ```
 
 will install the most recent development release of `nut.js`.

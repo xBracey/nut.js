@@ -1,6 +1,6 @@
 import { join } from "path";
 import { cwd } from "process";
-import { FileType } from "@nut-tree-macpad/shared";
+import { FileType } from "macpad-shared";
 import { generateOutputPath } from "./generate-output-path.function";
 
 describe("generate-output-path", () => {

@@ -1,5 +1,5 @@
 import clipboardy from "clipboardy";
-import { ClipboardProviderInterface } from "@nut-tree-macpad/provider-interfaces";
+import { ClipboardProviderInterface } from "macpad-provider-interfaces";
 
 export default class implements ClipboardProviderInterface {
   constructor() {}

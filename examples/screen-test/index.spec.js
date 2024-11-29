@@ -1,7 +1,7 @@
 "use strict";
 
-const { screen, Region, imageResource } = require("@nut-tree-macpad/nut-js");
-require("@nut-tree-macpad/nl-matcher");
+const { screen, Region, imageResource } = require("macpad-nut-js");
+require("macpad-nl-matcher");
 
 describe("Screen test", () => {
   describe("dimensions", () => {

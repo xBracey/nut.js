@@ -4,7 +4,7 @@ import {
   isRegion,
   OptionalSearchParameters,
   Region,
-} from "@nut-tree-macpad/shared";
+} from "macpad-shared";
 import { screen } from "../../../index";
 
 export const toShow = async <PROVIDER_DATA>(

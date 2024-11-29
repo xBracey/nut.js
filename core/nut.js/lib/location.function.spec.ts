@@ -1,5 +1,5 @@
 import { centerOf, randomPointIn } from "./location.function";
-import { Point, Region } from "@nut-tree-macpad/shared";
+import { Point, Region } from "macpad-shared";
 
 describe("Location", () => {
   describe("centerOf", () => {

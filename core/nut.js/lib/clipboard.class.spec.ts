@@ -4,7 +4,7 @@ import { NoopLogProvider } from "./provider/log/noop-log-provider.class";
 import {
   ClipboardProviderInterface,
   ProviderRegistry,
-} from "@nut-tree-macpad/provider-interfaces";
+} from "macpad-provider-interfaces";
 
 beforeEach(() => {
   jest.clearAllMocks();

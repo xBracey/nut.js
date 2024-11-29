@@ -1,4 +1,4 @@
-import { Point } from "@nut-tree-macpad/shared";
+import { Point } from "macpad-shared";
 
 export class Bresenham {
   public static compute(from: Point, to: Point): Point[] {

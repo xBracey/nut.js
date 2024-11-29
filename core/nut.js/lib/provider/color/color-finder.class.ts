@@ -1,11 +1,11 @@
-import { ColorFinderInterface } from "@nut-tree-macpad/provider-interfaces";
+import { ColorFinderInterface } from "macpad-provider-interfaces";
 import {
   ColorQuery,
   imageToJimp,
   MatchRequest,
   MatchResult,
   Point,
-} from "@nut-tree-macpad/shared";
+} from "macpad-shared";
 
 export default class implements ColorFinderInterface {
   async findMatch<PROVIDER_DATA_TYPE>(

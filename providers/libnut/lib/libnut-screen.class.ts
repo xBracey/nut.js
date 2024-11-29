@@ -1,6 +1,6 @@
 import { libnut } from "../import_libnut";
-import { ColorMode, Image, Region } from "@nut-tree-macpad/shared";
-import { ScreenProviderInterface } from "@nut-tree-macpad/provider-interfaces";
+import { ColorMode, Image, Region } from "macpad-shared";
+import { ScreenProviderInterface } from "macpad-provider-interfaces";
 import { Bitmap } from "../libnut";
 
 export default class ScreenAction implements ScreenProviderInterface {

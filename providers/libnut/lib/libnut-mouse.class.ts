@@ -1,6 +1,6 @@
 import { libnut } from "../import_libnut";
-import { Button, Point } from "@nut-tree-macpad/shared";
-import { MouseProviderInterface } from "@nut-tree-macpad/provider-interfaces";
+import { Button, Point } from "macpad-shared";
+import { MouseProviderInterface } from "macpad-provider-interfaces";
 
 export default class MouseAction implements MouseProviderInterface {
   public static buttonLookup(btn: Button): any {

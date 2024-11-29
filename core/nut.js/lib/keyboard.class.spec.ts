@@ -1,11 +1,11 @@
-import { Key } from "@nut-tree-macpad/shared";
+import { Key } from "macpad-shared";
 import { KeyboardClass } from "./keyboard.class";
 import { mockPartial } from "sneer";
 import {
   KeyboardProviderInterface,
   LogProviderInterface,
   ProviderRegistry,
-} from "@nut-tree-macpad/provider-interfaces";
+} from "macpad-provider-interfaces";
 import { NoopLogProvider } from "./provider/log/noop-log-provider.class";
 
 jest.setTimeout(10000);

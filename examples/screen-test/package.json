@@ -1,7 +1,7 @@
 {
   "name": "sample-screen",
   "version": "4.2.0",
-  "private": true,
+  "private": false,
   "description": "A simple nut.js test example which tests screen control",
   "main": "index.js",
   "author": {
@@ -13,9 +13,9 @@
     "test": "jest --runInBand"
   },
   "dependencies": {
-    "@nut-tree-macpad/nut-js": "workspace:*"
+    "macpad-nut-js": "workspace:*"
   },
   "optionalDependencies": {
-    "@nut-tree-macpad/nl-matcher": "2.2.0"
+    "macpad-nl-matcher": "2.2.0"
   }
 }

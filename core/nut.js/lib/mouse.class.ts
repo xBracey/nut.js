@@ -1,11 +1,11 @@
-import { Button, isPoint, Point } from "@nut-tree-macpad/shared";
+import { Button, isPoint, Point } from "macpad-shared";
 import { busyWaitForNanoSeconds, sleep } from "./sleep.function";
 import {
   calculateMovementTimesteps,
   EasingFunction,
   linear,
 } from "./mouse-movement.function";
-import { ProviderRegistry } from "@nut-tree-macpad/provider-interfaces";
+import { ProviderRegistry } from "macpad-provider-interfaces";
 
 /**
  * Config object for {@link MouseClass} class

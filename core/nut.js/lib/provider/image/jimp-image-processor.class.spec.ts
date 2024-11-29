@@ -1,4 +1,4 @@
-import { Image, Point } from "@nut-tree-macpad/shared";
+import { Image, Point } from "macpad-shared";
 import JimpImageProcessor from "./jimp-image-processor.class";
 
 const imageWidth = 10;

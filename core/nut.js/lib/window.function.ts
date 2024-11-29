@@ -1,6 +1,6 @@
 import { WindowApi } from "./window-api.interface";
 import { Window } from "./window.class";
-import { ProviderRegistry } from "@nut-tree-macpad/provider-interfaces";
+import { ProviderRegistry } from "macpad-provider-interfaces";
 
 export const createWindowApi = (
   providerRegistry: ProviderRegistry,

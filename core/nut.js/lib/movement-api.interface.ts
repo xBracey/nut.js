@@ -1,4 +1,4 @@
-import { Point } from "@nut-tree-macpad/shared";
+import { Point } from "macpad-shared";
 
 /**
  * {@link MovementApi} provides helper functions to generate movement paths relative tot he current mouse position

@@ -5,7 +5,7 @@ import {
   ProviderRegistry,
   ScreenProviderInterface,
   WindowProviderInterface,
-} from "@nut-tree-macpad/provider-interfaces";
+} from "macpad-provider-interfaces";
 import { mockPartial } from "sneer";
 import {
   Region,
@@ -13,7 +13,7 @@ import {
   WindowElement,
   WindowElementDescription,
   WindowElementQuery,
-} from "@nut-tree-macpad/shared";
+} from "macpad-shared";
 import { pixelWithColor } from "../index";
 import { NoopLogProvider } from "./provider/log/noop-log-provider.class";
 

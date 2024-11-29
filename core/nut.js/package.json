@@ -1,5 +1,5 @@
 {
-  "name": "@nut-tree-macpad/nut-js",
+  "name": "macpad-nut-js",
   "version": "4.2.0",
   "license": "Apache-2.0",
   "main": "dist/index",
@@ -57,15 +57,15 @@
     "typedoc": "typedoc --out docs"
   },
   "dependencies": {
-    "@nut-tree-macpad/default-clipboard-provider": "workspace:*",
-    "@nut-tree-macpad/libnut": "workspace:*",
-    "@nut-tree-macpad/shared": "workspace:*",
-    "@nut-tree-macpad/provider-interfaces": "workspace:*",
+    "macpad-default-clipboard-provider": "workspace:*",
+    "macpad-libnut": "workspace:*",
+    "macpad-shared": "workspace:*",
+    "macpad-provider-interfaces": "workspace:*",
     "jimp": "0.22.10",
     "node-abort-controller": "3.1.1"
   },
   "devDependencies": {
-    "@nut-tree-macpad/configs": "workspace:*"
+    "macpad-configs": "workspace:*"
   },
   "engines": {
     "node": ">=16"

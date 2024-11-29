@@ -1,6 +1,6 @@
 import { libnut } from "../import_libnut";
 import WindowAction from "./libnut-window.class";
-import { Region } from "@nut-tree-macpad/shared";
+import { Region } from "macpad-shared";
 
 jest.mock("../import_libnut");
 

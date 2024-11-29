@@ -1,4 +1,4 @@
-import { Point } from "@nut-tree-macpad/shared";
+import { Point } from "macpad-shared";
 import { LineHelper } from "./linehelper.class";
 
 describe("LineHelper", () => {

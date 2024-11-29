@@ -1,10 +1,5 @@
 const { _electron: electron } = require("playwright");
-const {
-  sleep,
-  getActiveWindow,
-  screen,
-  getWindows,
-} = require("@nut-tree-macpad/nut-js");
+const { sleep, getActiveWindow, screen, getWindows } = require("macpad-nut-js");
 const { POS_X, POS_Y, WIDTH, HEIGHT, TITLE } = require("./constants");
 
 let app;

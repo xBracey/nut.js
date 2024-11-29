@@ -1,4 +1,4 @@
-import { Image, Point, RGBA } from "@nut-tree-macpad/shared";
+import { Image, Point, RGBA } from "macpad-shared";
 
 /**
  * An ImageProcessor should provide an abstraction layer to perform

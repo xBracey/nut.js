@@ -1,9 +1,4 @@
-import {
-  ColorQuery,
-  MatchRequest,
-  MatchResult,
-  Point,
-} from "@nut-tree-macpad/shared";
+import { ColorQuery, MatchRequest, MatchResult, Point } from "macpad-shared";
 
 /**
  * A WindowFinder should provide an abstraction layer to perform window searches

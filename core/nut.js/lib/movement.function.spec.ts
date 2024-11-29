@@ -3,8 +3,8 @@ import { mockPartial } from "sneer";
 import {
   MouseProviderInterface,
   ProviderRegistry,
-} from "@nut-tree-macpad/provider-interfaces";
-import { Point } from "@nut-tree-macpad/shared";
+} from "macpad-provider-interfaces";
+import { Point } from "macpad-shared";
 
 beforeEach(() => {
   jest.clearAllMocks();
